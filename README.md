@@ -1,8 +1,7 @@
 intosuggest
 ===========
 
-IntoSuggest is Joomla extension based on obSuggest by foobla. It provides ability very similar UserVoice. 
-This package works combo with Joomla 1.5, 1.6 and 2.5.
+IntoSuggest is Joomla extension based on obSuggest by foobla. IntoSuggest works with Joomla 1.5, 1.6 and 2.5.
 Version: 1.0
 
 SUPPORT
