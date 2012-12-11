@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>IntoSuggest</name>
+	<creationDate>Jan 2012</creationDate>
+	<author>Miku Laitinen</author>
+	<authorEmail>miku.laitinen@ninjaware.fi</authorEmail>
+	<authorUrl>https://github.com/mlaitinen/intosuggest</authorUrl>
+	<copyright>Copyright (C) 2007-2012 foobla.com. Copyright (C) 2012 Miku Laitinen. All rights reserved.</copyright>
+	<license>GNU/GPL, see LICENSE</license>
+	<version>1.8.4</version>
+	<description><![CDATA[INTOSUGGEST_MANIFEST_DESC]]></description>
+	<installfile>install.intosuggest.php</installfile>
+	<uninstallfile>uninstall.intosuggest.php</uninstallfile>
+	<files folder="site">
+		<folder>assets</folder>
+		<folder>classes</folder>
+		<folder>controllers</folder>
+		<folder>helper</folder>
+		<folder>language</folder>
+		<folder>models</folder>
+		<folder>sef_ext</folder>
+		<folder>themes</folder>
+		<folder>views</folder>
+		<folder>vote_boxs</folder>
+		<filename>intosuggest.php</filename>
+		<filename>router.php</filename>
+	</files>
+	<languages folder="site/language">
+		<language tag="en-GB">en-GB/en-GB.com_intosuggest.ini</language>
+		<language tag="de-DE">de-DE/de-DE.com_intosuggest.ini</language>
+		<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.ini</language>
+	</languages>
+	<administration>
+		<menu link="option=com_intosuggest" img="../administrator/components/com_intosuggest/assets/images/intosuggest_16.png">COM_INTOSUGGEST</menu>
+
+	 	<submenu>
+			<menu link="option=com_intosuggest&amp;controller=default" img="../administrator/components/com_intosuggest/assets/images/icons/cpanel_16.png">CONTROL_PANEL</menu>
+			<menu link="option=com_intosuggest&amp;controller=forum" img="../administrator/components/com_intosuggest/assets/images/icons/forum_16.png">FORUM_MANAGER</menu>
+			<menu link="option=com_intosuggest&amp;controller=idea" img="../administrator/components/com_intosuggest/assets/images/icons/idea_16.png">IDEA_MANAGER</menu>
+			<menu link="option=com_intosuggest&amp;controller=langs" img="../administrator/components/com_intosuggest/assets/images/icons/langs_16.png">TRANSLATION</menu>
+			<menu link="option=com_intosuggest&amp;controller=permission" img="../administrator/components/com_intosuggest/assets/images/icons/permission_16.png">PERMISSION</menu>
+			<menu link="option=com_intosuggest&amp;controller=exportimport" img="../administrator/components/com_intosuggest/assets/images/icons/import_16.png">IMPORT_EXPORT</menu>
+			<menu link="option=com_intosuggest&amp;controller=vote" img="../administrator/components/com_intosuggest/assets/images/icons/vote_16.png">VOTE</menu>
+			<menu link="option=com_intosuggest&amp;controller=upgrade" img="../administrator/components/com_intosuggest/assets/images/icons/support_16.png">SUPPORT</menu>
+			<!-- <menu link="option=com_intosuggest&amp;controller=report" img="../administrator/components/com_intosuggest/assets/images/icons/report_16.png">REPORTS</menu>
+			<menu link="option=com_intosuggest&amp;controller=themes" img="../administrator/components/com_intosuggest/assets/images/icons/theme_16.png">THEMES</menu> -->
+		</submenu>
+
+		<files folder="admin">
+			<folder>aio</folder>
+			<folder>assets</folder>
+			<folder>backup</folder>
+			<folder>classes</folder>
+			<folder>controllers</folder>
+			<folder>data</folder>
+			<folder>defaultdata</folder>
+			<folder>elements</folder>
+			<folder>fix</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+			<filename>intosuggest.php</filename>
+			<filename>toolbar.intosuggest.php</filename>
+			<filename>toolbar.intosuggest.html.php</filename>
+		</files>
+		<files>
+			<filename>intosuggest.xml</filename>
+			<filename>install.intosuggest.php</filename>
+			<filename>uninstall.intosuggest.php</filename>
+			<filename>CHANGELOG</filename>
+			<filename>LICENSE</filename>
+			<filename>README</filename>
+		</files>
+		<languages folder="admin/language">
+			<language tag="en-GB">en-GB/en-GB.com_intosuggest.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_intosuggest.menu.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_intosuggest.sys.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_intosuggest.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_intosuggest.menu.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_intosuggest.sys.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.menu.ini</language>
+			<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.sys.ini</language>
+			<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.ini</language>
+			<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.menu.ini</language>
+			<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.sys.ini</language>
+		</languages>
+	</administration>
+</install>

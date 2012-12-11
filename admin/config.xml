@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<!-- for Joomla 1.5 -->
+	<params addpath="/administrator/components/com_intosuggest/elements">
+		<param name="default_email" type="text" label="Default Email"/>
+	</params>
+	<!-- for Joomla 1.6 -->
+	<fieldset
+		name="UPGRADE_CONFIG"
+		label="UPGRADE_CONFIG"
+		description="UPGRADE_CONFIG">
+		<field name="default_email" type="text" label="DEFAULT_EMAIL"/>
+	</fieldset>
+</config>

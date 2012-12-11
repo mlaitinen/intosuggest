@@ -1,0 +1,57 @@
+#intosuggest-feedback {
+	position: fixed;
+}
+
+#intosuggest-feedback div.intosuggest-feedback-top {
+	
+}
+
+#intosuggest-feedback div.intosuggest-feedback-right {
+	
+}
+
+#intosuggest-feedback div.intosuggest-feedback-bottom {
+	
+}
+
+/* #intosuggest-feedback div.intosuggest-feedback-left {
+	position: fixed;
+	top: 150px;
+	left: 0px;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+	border-top: 1px solid green;
+	border-right: 1px solid green;
+	border-bottom: none;
+	border-left: 1px solid green;
+	padding: 5px;
+}
+
+div#intosuggest-feedback a {
+	text-decoration: none;
+} */
+
+
+#intosuggest-feedback-container .intosuggest-feedback-bottom {
+	position: fixed;
+	left: 10px;
+	bottom: 0;
+	z-index: 999999;
+}
+
+.intosuggest-feedback-button-bottom 
+{
+     background: url(feedback_bottom.png);
+     height: 36px;
+	 width: 200px;
+	 display: block;
+}
+
+.intosuggest-feedback-button-bottom:hover
+{
+	background: url(feedback_bottom.png);
+	background-position:0px 37px;
+     
+}
+
