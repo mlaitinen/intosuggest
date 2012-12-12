@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 .box_vote_blue {
 	width: 90px;
-	text-align: center;
+	text-align: center !important;
 }
 
 .sum_vote , .btn_vote {
@@ -12,19 +12,19 @@ div .box_vote_blue .sum_vote {
 	font-size: 26px;
 	color: white;
 	padding: 15px 0;
-	text-align: center!important;
+	text-align: center !important;
 }
 
-.box_vote_blue .user_vote {
+.box_vote_blue .user_vote div {
 	background: #f19720;
 	padding: 2px 0;
 	color: white;
-	text-align: center!important;
+	text-align: center !important;
 }
 
 .btn_vote_wrap {
 	padding-top: 8px;
-	text-align: center!important;
+	text-align: center !important;
 }
 
 .btn_vote {
@@ -130,12 +130,12 @@ div .box_vote_blue .sum_vote {
 }
 
 .points .sum_vote {
-	text-align:center;
+	text-align: center !important;
 }
 
 .btn_vote {
 	position: relative;
-	text-align:center;
+	text-align: center !important;
 	cursor: pointer;
 }
 

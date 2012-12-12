@@ -27,9 +27,7 @@
 	</files>
 	<languages folder="site/language">
 		<language tag="en-GB">en-GB/en-GB.com_intosuggest.ini</language>
-		<language tag="de-DE">de-DE/de-DE.com_intosuggest.ini</language>
-		<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.ini</language>
-		<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.ini</language>
+		<language tag="fi-FI">fi-FI/fi-FI.com_intosuggest.ini</language>
 	</languages>
 	<administration>
 		<menu link="option=com_intosuggest" img="../administrator/components/com_intosuggest/assets/images/intosuggest_16.png">COM_INTOSUGGEST</menu>
@@ -50,7 +48,6 @@
 		<files folder="admin">
 			<folder>aio</folder>
 			<folder>assets</folder>
-			<folder>backup</folder>
 			<folder>classes</folder>
 			<folder>controllers</folder>
 			<folder>data</folder>
@@ -69,23 +66,16 @@
 			<filename>intosuggest.xml</filename>
 			<filename>install.intosuggest.php</filename>
 			<filename>uninstall.intosuggest.php</filename>
-			<filename>CHANGELOG</filename>
 			<filename>LICENSE</filename>
-			<filename>README</filename>
+			<filename>README.md</filename>
 		</files>
 		<languages folder="admin/language">
 			<language tag="en-GB">en-GB/en-GB.com_intosuggest.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_intosuggest.menu.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_intosuggest.sys.ini</language>
-			<language tag="de-DE">de-DE/de-DE.com_intosuggest.ini</language>
-			<language tag="de-DE">de-DE/de-DE.com_intosuggest.menu.ini</language>
-			<language tag="de-DE">de-DE/de-DE.com_intosuggest.sys.ini</language>
-			<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.ini</language>
-			<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.menu.ini</language>
-			<language tag="fr-FR">fr-FR/fr-FR.com_intosuggest.sys.ini</language>
-			<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.ini</language>
-			<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.menu.ini</language>
-			<language tag="nl-NL">nl-NL/nl-NL.com_intosuggest.sys.ini</language>
+			<language tag="fi-FI">fi-FI/fi-FI.com_intosuggest.ini</language>
+			<language tag="fi-FI">fi-FI/fi-FI.com_intosuggest.menu.ini</language>
+			<language tag="fi-FI">fi-FI/fi-FI.com_intosuggest.sys.ini</language>
 		</languages>
 	</administration>
 </install>

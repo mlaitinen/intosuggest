@@ -28,7 +28,7 @@ class IntoSuggestHelperRouter{
 		}
 		$items	= $menus->getItems( $comid, $component->id, true );
 		$d 		= ( strpos($_url,"?") === false ) ? "?" : "&";
-		return ($items->id)? $_url . $d."Itemid=".$items->id:$_url;	
+		return ($items != null && property_exists($items, 'id') && $items->id)? $_url . $d."Itemid=".$items->id:$_url;	
 	}
 	public function getIdeaTitle($id, $default = 'default')
 	{

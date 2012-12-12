@@ -9,3 +9,6 @@ SUPPORT
 
 BUGS/FEATURE REQUESTS
 - You can file bugs and feature requests in https://github.com/mlaitinen/intosuggest -> Issues
+
+REQUIREMENTS
+- Mootools 1.2. If you are running Joomla! 1.5 you'll probably have to upgrade mootools from 1.12 -> 1.2. The easiest way is to download the great Mootools Upgrade Plugin from http://extensions.joomla.org/extensions/core-enhancements/performance/mootools/14643.

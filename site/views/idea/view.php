@@ -267,15 +267,7 @@ class ViewIdea extends JView {
 		switch ($box){
 			case 'TITLE':
 				echo '<h2><a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id)).'" id="title'.$idea->id.'">'.$idea->title.'</a></h2>';
-//				echo '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id)).'" id="title'.$idea->id.'">'.$idea->title.'</a>';
 
-				break;
-			case 'CURRENTSTATUS':
-				echo '
-					<div id="status_title_' . $idea->id . '" class="' . 
-						($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-						($idea->status ? $idea->status : "Status / Set Close").'</div>'.
-					'';
 				break;
 			case 'CONTENT':
 				echo '
@@ -338,7 +330,6 @@ class ViewIdea extends JView {
 						($this->output->permission->edit_idea_a == 1) || 
 						(($this->output->permission->edit_idea_o == 1) && ($this->output->user->id == $idea->user_id))) 
 					{
-						//$edit = '<option value="onedit(\''.$idea->id.'\')">'.JText::_("Edit").'</option>';//  onClick="onedit(<?php echo $idea->id; 
 						$edit='<input type="button" value="'.JText::_("Edit").'" onclick="onedit(\''.$idea->id.'\')">';
 					}
 				?>
@@ -349,7 +340,6 @@ class ViewIdea extends JView {
 						(($this->output->permission->delete_idea_o == 1) && ($this->output->user->id == $idea->user_id))
 					) 
 					{
-						//delete = '<option value="ondel(\''.$idea->id.'\')">'.JText::_("Delete").'</option>';
 						$delete='<input type="button" value="'.JText::_("Delete").'" onclick="ondel(\''.$idea->id.'\')">';
 					}
 				?>

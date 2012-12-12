@@ -42,12 +42,14 @@ class ViewComment extends JView {
 			$document->addScript('components/com_intosuggest/vote_boxs/'.substr($votebox_layout, 0, -4).'.js');
 		}
 		
+        $total = 0; // Fixes the notice
 		$this->assignRef( 'ideas', 		$ideas );
 		$this->assignRef( 'forum_info', $forum_info );
 		$this->assignRef( 'forum_id', 	$forum_id );
 		$this->assignRef( 'status', 	$status );
 		$this->assignRef( 'comments', 	$comments );
 		$this->assignRef( 'idea_id', 	$idea_id );
+        $this->assignRef( 'total',      $total);
 		$this->assignRef( 'output', 	$output );
 		$this->assignRef( 'gconfig', 	$gconfig );
 		

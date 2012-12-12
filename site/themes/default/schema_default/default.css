@@ -179,7 +179,7 @@ div.idea_currentstatus div {
 	height: 21px;
 	margin: 0;
 	padding-top: 6px;
-	text-align: center;
+	text-align: center !important;
 }
 
 div.idea_response .rs_title{
@@ -358,7 +358,7 @@ div.idea_actions{
 	color: #23a0da;
 	padding: 4px 0;
 	margin-right: 10px;
-	text-align: center;
+	text-align: center !important;
 	float: left;
 	width: 90px;
 }
@@ -421,7 +421,7 @@ div.comment_desc_info div {
 
 #list_comment div.comment_separate_line_last {
 	margin: 0px 3px 0px 3px;
-	text-align: center;
+	text-align: center !important;
 	border: 1px dotted #999999;
 	background: #ffffcc;
 }
@@ -471,12 +471,12 @@ div.idea-create-new {
 }
 
 .box_search_div_1 {
-	float:left;
-	width:88%;
+	float: left;
+	width: 88%;
 }
 
 .box_search_div_2 {
-	float:right;
-	width:10%;
-	text-align: right;
+	float: right !important;
+	width: 10%;
+	text-align: right !important;
 }

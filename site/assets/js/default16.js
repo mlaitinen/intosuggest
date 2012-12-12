@@ -429,10 +429,6 @@ function clickStatus(id) {
 function updateIdeaStatus(idea_id,stt_id) {		
 	var url = "index.php?option=com_intosuggest&controller=idea&task=updateIdeaStatus&format=raw&id="+idea_id+"&status_id="+stt_id;
 	
-	//sendData(url,'statusform');
-	
-//	var idea_status = document.getElementById("status_title_"+idea_id/*stt_idea_id*/)	
-//	idea_status.innerHTML = "...";
 	var req = new Request({
 		'url':url,
 		method: 'post',
@@ -443,9 +439,6 @@ function updateIdeaStatus(idea_id,stt_id) {
 				txt = 'Start / Set Close'
 				cls = "none"
 			}
-//			alert( txt );
-//			idea_status.innerHTML = txt;
-//			idea_status.className=cls;			
 		}
 	}).send();
 	
