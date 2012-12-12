@@ -20,6 +20,7 @@ class ModelActivity extends JModel {
 	private $user;
 	private $idea_id = null;
 	private $key = NULL;
+    private $gconfigs = null;
 	public $user_id;
 	public $limitstart = 0;
 	public $limit = 10;
@@ -123,6 +124,16 @@ class ModelActivity extends JModel {
 		";
 		
 		return DBase::getObject($sql)->value;
+	}
+    
+    function getGConfig() {
+		if( !$this->gconfigs ) {
+			$db 	= &JFactory::getDbo();
+			$query 	= "SELECT * FROM `#__intosuggest_gconfig`";
+			$db->setQuery( $query );
+			$this->gconfigs = $db -> loadObjectList('key');
+		}
+		return $this->gconfigs;
 	}
 }
 ?>

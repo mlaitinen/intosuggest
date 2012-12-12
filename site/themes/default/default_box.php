@@ -1,4 +1,4 @@
-<div id="idea_info_<?php echo $this->idea_id;?>" class="box-idea">
+<div id="idea_info_<?php echo !empty($this->idea_id) ? $this->idea_id : 'no_id';?>" class="box-idea">
 		<div class="idea_col_left">
 			<!-- IDEA BOXVOTE -->
 			<?php echo $this->displayBox("BOXVOTE"); ?>

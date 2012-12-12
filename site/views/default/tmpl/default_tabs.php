@@ -156,8 +156,7 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 				<div class="ideas_username createdby">&nbsp;<?php 
 					echo JText::_("by").' ';
 					if ($user->username != "anonymous") {
-//						echo '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
-						echo '<a href="javascript:void(0)">'.$user->username.'</a>';
+						echo '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
 					} else { 
 						echo '<a href="javascript:void(0)">'.JText::_("anonymous").' </a>';
 					}

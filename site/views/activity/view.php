@@ -19,7 +19,7 @@ class ViewActivity extends JView {
 	
 	function display($tmp = null) {
 		// status of idea
-		$status = $this->get('Status');
+		//$status = $this->get('Status');
 		
 		// list of ideas
 		$ideas = $this->get('Ideas');
@@ -79,9 +79,23 @@ class ViewActivity extends JView {
 		$this->assignRef('ideas',$ideas);
 	
 		$this->assignRef('comments',$comments);
-		$this->assignRef('search',$serch);
+		$this->assignRef('search',$search);
 		$this->assignRef('sumideas',$sumideas);
 		$this->assignRef('sumcomments',$sumcomments);
+        
+        $gconfig 	= $this->get( 'gconfig' );
+        $this->assignRef('gconfig', $gconfig);
+        
+        $document 		= &JFactory::getDocument();
+		$votebox_layout = isset($gconfig['votebox']->value) ? $gconfig['votebox']->value : 'default.php';
+		$cssfile = JPATH_COMPONENT_SITE.DS.'vote_boxs'.DS.substr($votebox_layout, 0, -4).'.css';
+		$jsfile = JPATH_COMPONENT_SITE.DS.'vote_boxs'.DS.substr($votebox_layout, 0, -4).'.js';
+		if(JFile::exists($cssfile)) {
+			$document->addStyleSheet('components/com_intosuggest/vote_boxs/'.substr($votebox_layout, 0, -4).'.css');
+		}
+		if(JFile::exists($jsfile)) {
+			$document->addScript('components/com_intosuggest/vote_boxs/'.substr($votebox_layout, 0, -4).'.js');
+		}
 		
 		$this->assignRef('output',$output);
 		
@@ -138,9 +152,12 @@ class ViewActivity extends JView {
 		$this->assignRef('total', $sumideas)	;
 		$this->assignRef('user',$user);
 		$this->assignRef('ideas',$ideas);		
-		$this->assignRef('search',$serch);
+		$this->assignRef('search',$search);
 		$this->assignRef('sumideas',$sumideas);		
 		$this->assignRef('output',$output);
+        
+        $gconfig 	= $this->get( 'gconfig' );
+        $this->assignRef('gconfig', $gconfig);
 		
 		// only display content of the ideas
 		parent::display("ideas");
@@ -186,10 +203,13 @@ class ViewActivity extends JView {
 		$this->assignRef('status',		$status);	
 		$this->assignRef('user',		$user);
 		$this->assignRef('comments',	$comments);
-		$this->assignRef('search',		$serch);
+		$this->assignRef('search',		$search);
 		$this->assignRef('sumcomments',	$sumcomments);	
 		$this->assignRef('output',		$output);
 		$this->assignRef("pageComment", $pageComment);
+        
+        $gconfig 	= $this->get( 'gconfig' );
+        $this->assignRef('gconfig', $gconfig);
 		
 		$this->_addPath( 'template', JPATH_COMPONENT.DS.'views'.DS. 'comment'.DS.'tmpl' ); 
 		$this->loadTemplate("comment");
@@ -261,72 +281,9 @@ class ViewActivity extends JView {
 				echo JText::_("Created on")." ".date($this->datetime_format, strtotime($idea->createdate));
 				break;	
 			case 'BOXVOTE':
-				$listVote = Idea::getListVotes();
-				$user_vote = $this->getUserVoteIdea($idea->id);
-				$can_vote = (($this->output->permission->vote_idea_a == 1) || 
-									(($this->output->permission->vote_idea_o == 1) && ($this->output->user->id == $idea->user_id))) ;
-				?>
-				<div class="box-vote">
-                	<div class="sum" id="sum_vote_<?php echo $idea->id?>" style="text-align:center;">
-						
-						<?php 
-                            echo Number::createNumber($idea->votes);
-                        ?>                        	
-				
-                    </div>    
-                    <div class="uservote" style="text-align:center;">
-                    	<div style="width:55px;height:20px;margin:0 auto;">
-						<?php 
-						//$user_vote = $this->getUserVoteIdea($idea->id);
-                        //$can_vote = (($this->output->permission->vote_idea_a == 1) || 
-						//			(($this->output->permission->vote_idea_o == 1) && ($this->output->user->id == $idea->user_id))) ;
-						?>                          
-                            <div style="float:left;width:20px;height:20px;text-align:left;cursor:pointer;" <?php if($can_vote){?>onclick="Vote.up('<?php echo $idea->id?>')"<?php }?>>
-                            <?php if($can_vote){?>
-                            	<div id="left_number_<?php echo $idea->id?>" class="pre-number<?php if($user_vote==0) echo " is-min";?>"></div>
-                            <?php }else{?> 
-                            	<div class="pre-number disabled"></div>
-                            <?php }?>    
-                            </div>
-                            <div id="user_vote_<?php echo $idea->id?>" class="number" style="width:15px;height:20px;overflow:hidden;float:left;">
-                        	<?php 
-                    		$str = "";
-                        	?>
-                            	
-                            	<?php                            	
-                   				
-								$vote_value = 0;
-								$i=0;
-								$end_vote = 0;
-								foreach ($listVote as $objVote) {
-									if($objVote->vote_value!=$user_vote)
-									{
-										$i++;										
-									}
-									else 
-										$vote_value = $i;
-									$end_vote = $objVote->vote_value;	
-									$str .= '<span class="num'.$objVote->vote_value.'" >';
-									$str .= '<input id="vote_value_'.$idea->id."_".$objVote->vote_value.'" type="hidden" value="'.$objVote->vote_value.'">';
-									$str .= '</span>';								
-								}
-								$str = '<div style="margin-top:-'.($vote_value*20).'px;">' . $str . '</div>';
-								echo $str;
-								?>                                    
-                                
-                            </div>
-                            <div style="float:left;width:20px;height:20px;text-align:right;cursor:pointer;" <?php if($can_vote){ ?>onclick="Vote.down('<?php echo $idea->id?>')"<?php }?>>
-                            <?php if($can_vote){?> 
-                            	<div id="next_number_<?php echo $idea->id?>" class="next-number<?php if($user_vote==$end_vote) echo " is-max";?>"></div>
-							<?php }else{?>
-                            	<div class="next-number disabled"></div>
-                            <?php }?>    
-                            </div>
-                        </div>
-      
-                    </div>
-                </div>
-				<?php 
+				$votebox = isset( $this->gconfig['votebox']->value ) ? $this->gconfig['votebox']->value : 'default.php' ;
+				require JPATH_COMPONENT_SITE.DS.'vote_boxs'.DS.$votebox;
+
 				break;
 			case 'COMMENTCOUNT':
             	$idea_comment = Idea::getComments($idea->id);
@@ -451,7 +408,7 @@ class ViewActivity extends JView {
 					
 				<?php 
 				if ($can_response) {?>
-					<a href="javascript:addRepose('rps<?php echo $idea->id; ?>')" class="rs_add"><?php echo JText::_("add Response")?></a> 
+					<a href="javascript:addRepose('rps<?php echo $idea->id; ?>')" class="rs_add"><?php echo JText::_("Add Response")?></a> 
 				<?php }?>
 				
 					

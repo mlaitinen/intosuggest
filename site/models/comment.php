@@ -178,7 +178,7 @@ class ModelComment extends JModel {
 	}
 
 	public function getStatus() {
-		return Handy::getStatus();
+		return Handy::getStatus($this->getForumId());
 	}
 
 	public function getOutput() {
