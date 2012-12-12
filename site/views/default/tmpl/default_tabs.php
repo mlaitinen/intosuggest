@@ -37,11 +37,20 @@ if(!$obIsJ15){
 }
 ?>
 <div>
-<?php $tab = &JRequest::getVar('tab','top'); ?>
+<?php $activeTab = &JRequest::getVar('tab', 0); ?>
 <div id="new_tabs">
-	<span><?php echo ($tab!='top')?'<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id).'">':'<span>'; ?><?php echo JText::_('TOP'); ?><?php echo ($tab!='top')?'</a>':'</span>'; ?></span>
-	<span><?php echo ($tab!='hot')?'<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id.'&tab=hot').'">':'<span>'; ?><?php echo JText::_('HOT'); ?><?php echo ($tab!='hot')?'</a>':'</span>'; ?></span>
-	<span><?php echo ($tab!='new')?'<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id.'&tab=new').'">':'<span>'; ?><?php echo JText::_('NEW'); ?><?php echo ($tab!='new')?'</a>':'</span>'; ?></span>
+    <span>
+        <?php echo ($activeTab != 0) ? '<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id).'">':'<span>'; ?>
+        <?php echo JText::_('No status'); ?>
+        <?php echo ($activeTab != 0) ? '</a>' : '</span>'; ?>
+    </span>
+    <?php    foreach ($this->tabs as $tab) : ?>
+    <span>
+        <?php echo ($activeTab != $tab->id) ? '<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id.'&tab='.$tab->id).'">':'<span>'; ?>
+        <?php echo JText::_($tab->title); ?>
+        <?php echo ($activeTab != $tab->id) ? '</a>' : '</span>'; ?>
+    </span>
+    <?php    endforeach; ?>
 </div>
 <div class="clear_both"></div>
 <div id="idea_container">

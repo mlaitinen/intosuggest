@@ -103,7 +103,7 @@ class Modelidea extends JModel {
 	}
 	
 	
-	public function getIdeas() {
+	public function getIdeas($statusid = FALSE) {
 		
 		$where = ""; 
 		if ($this->key != NULL) {
@@ -116,6 +116,11 @@ class Modelidea extends JModel {
 				WHERE `published` =1 AND `forum_id` = $this->forum_id 
 			";
 		}
+        
+        if($statusid !== FALSE) {
+            $where .= " AND i.status_id = $statusid ";
+        }
+        
 		$limit = '';
 		if($this->limit>0 && $this->limitstart>=0)
 		{
@@ -171,7 +176,7 @@ class Modelidea extends JModel {
 		return DBase::getObject($query);
 	}
 	public function getStatus() {
-		return Handy::getStatus();
+		return Handy::getStatus($this->forum_id);
 	}
 	
 	public  function getUserVote() {
@@ -202,6 +207,7 @@ class Modelidea extends JModel {
 		
 		return $temp->getOutput();
 	}
+    
 	public function addIdea($_input) {
 		$_input['title'] =Config::fixBadWord($_input['title']);
 		$_input['content'] = Config::fixBadWord($_input['content']);
@@ -229,6 +235,7 @@ class Modelidea extends JModel {
 		//echo $query;		
 		DBase::querySQL($query);
 	}
+    
 	public function addResponse($_input) {
 		$_input['response'] = Config::fixBadWord($_input['response']);
 		$query = "
@@ -239,6 +246,7 @@ class Modelidea extends JModel {
 
 		DBase::querySQL($query);
 	}
+    
 	public function delIdea($_input) {
 		
 		$query = "
@@ -251,135 +259,6 @@ class Modelidea extends JModel {
 			WHERE `id` = ".$_input['id']."
 		;";		
 		DBase::querySQL($query);
-	}
-	
-	/*function getNewIdeas() {
-		$date	= getdate();
-		$mon	= $date['mon']<10?'0'.$date['mon']:$date['mon']; 
-		$date	= $date['year'].'-'.$mon.'-'.$date['mday'];
-		$qry = "
-			SELECT *  FROM #__intosuggest_idea
-			WHERE `createdate` LIKE '".$date."%'
-		";
-		//echo $qry;
-		DBase::querySQL($qry);
-	}*/
-	
-	function getNewIdeas() { 
-		
-		$date	= getdate();
-		$mon	= $date['mon']<10?'0'.$date['mon']:$date['mon']; 
-		$date	= $date['year'].'-'.$mon.'-'.$date['mday'];
-		/*$qry = "
-			SELECT *  FROM #__intosuggest_idea
-			WHERE `createdate` LIKE '".$date."%'"." ORDER BY `id` DESC";*/
-		$qry = "
-			SELECT COUNT(i.id)  
-			FROM #__intosuggest_idea i
-			LEFT JOIN #__intosuggest_status s ON(i.status_id=s.id)
-			WHERE `published` = 1
-			AND `forum_id` = ".$this->forum_id."  ORDER BY `i`.`id` DESC";
-		$this->total = DBase::getObjectResult($qry);
-
-		$qry = " SELECT i.*, s.title as status
-			FROM #__intosuggest_idea i
-			LEFT JOIN #__intosuggest_status s ON(i.status_id=s.id)
-			WHERE `published` = 1
-			AND `forum_id` = ".$this->forum_id."  ORDER BY `id` DESC
-		";
-		
-		return DBase::getObjectListPageNav($qry, $this->limitstart, $this->limit);
-	}
-	
-	function  getNewIdeasCount() {
-		$qry = " SELECT COUNT(id)  FROM #__intosuggest_idea WHERE `published` = 1".
-				" AND `forum_id` = ".$this->forum_id."  ORDER BY `id` DESC";
-		return DBase::getObjectResult($qry);
-	}
-	
-	
-	function  getTopIdeas(){ 			
-		//echo $this->limit;
-		$query = "SELECT COUNT(id) FROM #__intosuggest_idea ". 
-				 " WHERE  `forum_id` = ".$this->forum_id." AND `published` =1";
-		$query = "
-			SELECT count(i.id)
-			FROM `#__intosuggest_idea` i
-			LEFT JOIN `#__intosuggest_status` s  on (i.status_id = s.id)
-			WHERE `forum_id` = '".$this->forum_id."' 
-			AND `published` = 1  
-		";		 
-		$total = DBase::getObjectResult($query);
-		$this->total = $total;
-		/*$query = "SELECT * FROM #__intosuggest_idea ". 
-				 " WHERE  `forum_id` = ".$this->forum_id." AND `published` =1".
-				 " ORDER BY `votes` DESC";
-				 */
-		
-		$query = "
-			SELECT i.*, s.title as status
-			FROM `#__intosuggest_idea` i
-			LEFT JOIN `#__intosuggest_status` s  on (i.status_id = s.id)
-			WHERE `forum_id` = '".$this->forum_id."' 
-			AND `published` = 1  
-			ORDER BY `votes` DESC
-		";
-		return DBase::getObjectListPageNav($query, $this->limitstart, $this->limit);
-	}
-	
-	function topIdeaCount() {
-		$query = "SELECT COUNT(id) FROM #__intosuggest_idea ". 
-				 " WHERE  `forum_id` = ".$this->forum_id." AND `published` =1";
-		return DBase::getObjectResult($query);
-	}
-	
-	
-	function getHotIdeas(){
-		$date_current = strtotime("now");
-		$arr	= array();
-		$query  = "
-			SELECT COUNT(i.id) 
-			FROM #__intosuggest_idea i
-			LEFT JOIN #__intosuggest_status s ON (i.status_id = s.id)
-			WHERE `forum_id` = ".$this->forum_id." AND `published` =1 
-		";
-		$this->total = DBase::getObjectResult($query);
-		$query  = "
-			SELECT i.*, s.title as status
-			FROM #__intosuggest_idea i
-			LEFT JOIN #__intosuggest_status s ON (i.status_id = s.id)
-			WHERE `forum_id` = ".$this->forum_id." AND `published` =1 
-		";	
-		
-		$result = DBase::getObjectListPageNav($query, $this->limitstart, $this->limit);
-		for($i = 0; $i < count($result); $i++) {
-			if ($date_current < strtotime($result[$i]->createdate))	
-			$timei = $date_current;
-			else 		
-				$timei = $date_current - strtotime($result[$i]->createdate);
-			$votei = $result[$i]->votes;
-			for($j = $i+1; $j < count($result); $j++) {
-				if ($date_current < strtotime($result[$j]->createdate))	
-				$timej = $date_current;
-				else 		
-					$timej = $date_current - strtotime($result[$j]->createdate);
-					$votej = $result[$j]->votes;
-					if($votei == 0) $timei = 1;
-					if($votej == 0) $timej = 1;
-					if (($votei*$timej) <= ($votej*$timei)){
-						$arr = $result[$i];
-						$result[$i] = $result[$j];
-						$result[$j] = $arr;
- 					}
-			}
-		}
-		return $result ;
-	}
-	
-	function getHotIdeaCount() {
-		$query  = "SELECT COUNT(id) FROM #__intosuggest_idea".
-				  " WHERE `forum_id` = ".$this->forum_id." AND `published` =1 ";
-		return  DBase::getObjectResult($query);
 	}
 	
 	function getListIdea(){

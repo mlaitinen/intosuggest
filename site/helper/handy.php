@@ -29,11 +29,14 @@ final class Handy {
 		if ($_user_id == 0) $user->username = "anonymous";
 		return $user;
 	}
-	public static function getStatus() {
+	public static function getStatus($forum_id) {
 		$query = "
-			SELECT *
-			FROM `#__intosuggest_status`
-			ORDER BY `id` ASC						
+			SELECT s.id, s.title, s.parent_id FROM #__intosuggest_status AS s
+            INNER JOIN #__intosuggest_tab AS t ON t.status_id = s.id
+            WHERE t.forum_id = $forum_id
+            UNION
+            SELECT id, title, parent_id FROM #__intosuggest_status WHERE parent_id = -1
+            ORDER BY id ASC
 		;";		
 		return DBase::getObjectList($query);
 	}

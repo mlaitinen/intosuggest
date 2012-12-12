@@ -16,7 +16,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	<font style="font-size:8px; color:#bbb;">........ <strong style="font-size:11px"><?php echo JText::_("or")?></strong></font></div>
 	<?php if ($this->output->permission->new_idea_a == 1) {?>
 	<div class="rsSearch" onclick='document.getElementById("frm_New").href+="&idea_title="+document.getElementById("key_search").value; newForm()' style="cursor:pointer;"><a>........<?php echo JText::_("CREATE_NEW_IDEA")?></a>			
-	<!--<a id="frm_New" href="index.php?option=com_intosuggest&controller=idea&task=dispNewForm&format=raw" rel="{handler: 'iframe',size: {x: 540, y: 400}}" style="background-color: #FFF;"></a>-->					 				
 	</div>
 	<?php }?>
 	<div class="rsSearch"><font style="font-size:8px; color:#bbb;">......................</font></div>

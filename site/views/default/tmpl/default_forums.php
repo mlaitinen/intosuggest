@@ -23,10 +23,12 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	}
 	if(count($listsF))
 	{
-		$listsFSlct = JHTML::_('select.genericlist',  $listsF, 'forumId', 'class="inputbox" size="1" onchange="changepage();"', 'id', 'name', $forum_id);
 		if ($this->output->config->listbox == 1) {
+            $listsFSlct = JHTML::_('select.genericlist',  $listsF, 'forumId', 'class="inputbox" size="1" onchange="changepage();"', 'id', 'name', $forum_id);
 			echo $listsFSlct;
-		}
+		} else {
+            echo "<input type='hidden' name='forumId' id='forumId' value='$forum_id' />";
+        }
 	}
 ?>
 	</div>
