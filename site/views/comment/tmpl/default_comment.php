@@ -44,7 +44,7 @@ if ( !$obIsJ15 ) {
 	});
 
 	function delComment(id){
-		var agree = confirm("<?php echo JText::_("Are you sure delete?")?>");
+		var agree = confirm("<?php echo JText::_("CONFIRM_DELETE_COMMENT")?>");
 		var controller = document.getElementById('controller').value;
 		
 		if (agree){
@@ -93,7 +93,7 @@ if ( !$obIsJ15 ) {
 		comment = comment.replace(/\n/gi, "[br\/\]");
 		//alert(comment);
 		if (comment == ""){
-			alert("<?php echo JText::_("Enter the content for comments. Please!")?>");
+			alert("<?php echo JText::_("EMPTY_COMMENT")?>");
 		}else{
 			var idea_id  	= document.getElementById('idea_id').value;
 			var forum_id 	= document.getElementById('forum_id').value;
@@ -165,7 +165,7 @@ if (count($this->comments)){
 				<?php if (($this->output->permission->delete_comment_a == 1) || (($this->output->permission->delete_comment_o == 1) && ($this->output->user->id == $comment->user_id))) {?>
 				<a href="javascript:delComment(<?php echo $comment->id;?>);"><?php echo JText::_("Delete")?></a>&nbsp;|&nbsp;
 				<?php }?>
-				<?php echo JText::_("Created on")?> <?php echo date($this->datetime_format, strtotime($comment->createdate)); ?></div>							
+				<?php echo JText::_("Created on")?> <?php echo JHTML::_('date', strtotime($comment->createdate), JText::_('DATE_FORMAT_LC2')); ?></div>							
 			<?php if (($this->output->permission->edit_comment_a == 1) || (($this->output->permission->edit_comment_o == 1) && ($this->output->user->id == $comment->user_id))) {?>
 	<!-- Change Status -->
 			<div class="active" id ="edt<?php echo $comment->id; ?>">

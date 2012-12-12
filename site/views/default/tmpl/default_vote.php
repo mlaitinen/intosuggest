@@ -11,9 +11,6 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 ?>
-<script type="text/javascript">
-	//default.js
-</script>
 <?php require_once(JPATH_COMPONENT.DS."helper".DS."idea.php");?>
 <div id="voteform" class="invisible_form">
 	<form name="VoteForm" action="#" method="POST">

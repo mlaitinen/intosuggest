@@ -39,9 +39,6 @@ require_once(JPATH_ADMINISTRATOR.DS."components".DS.$option.DS."helpers".DS."the
 $theme = new Themes();
 $theme->setTheme();
 
-$document=JFactory::getDocument();
-//$document->addScript(JURI::base() ."components/$option/assets/js/default.js");
-
 $c = "Controller".$c;
 $controller = new $c;
 $controller->execute(JRequest::getVar('task'),'display');

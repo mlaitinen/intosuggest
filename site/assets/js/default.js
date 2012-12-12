@@ -210,7 +210,7 @@ function addResponse(sid) {
 	document.getElementById(cache).value = response;
 }
 function ondel(id) {
-	var agress = confirm(("Are you sure delete?"));
+	var agress = confirm(getConfirmDeleteIdeaText());
 	if (agress) {
 		
 		var url = "index.php?option=com_intosuggest&controller=idea&format=raw&task=delIdea&id="+id;

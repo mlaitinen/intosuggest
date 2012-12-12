@@ -60,6 +60,8 @@ foreach($layouts as $layout){
 <script type="text/javascript">
 	//jQuery.noConflict();
 	
+    function getConfirmDeleteIdeaText() {return "<?php echo JText::_("CONFIRM_DELETE_IDEA")?>";}
+    
 	window.addEvent("domready",
 		function(){
 			clickTab('TOP');

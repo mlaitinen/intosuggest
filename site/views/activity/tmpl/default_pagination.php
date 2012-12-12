@@ -50,7 +50,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 									$status_text = '';
 									foreach ($this->status as $status ) {
 										if ($status->id == $idea->status_id) {
-											$status_text .= $status->title; 	
+											$status_text .= JText::_($status->title);
 											break;
 										}		
 										$dem++;								

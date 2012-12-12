@@ -11,12 +11,6 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 ?>
-<script type="text/javascript">
-	//default.js
-</script>
-<style type="text/css">
-
-</style>
 <div id="statusform" class="invisible_form">
 	<form name="StatusForm" action="#" method="POST">
 		<div class="frame">
@@ -25,7 +19,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				if ($status->parent_id == -1) { 
 		?>
 			<div>
-				<div class="parentid" id="stt<?php echo $status->id; ?>"><?php echo $status->title; ?></div>
+				<div class="parentid" id="stt<?php echo $status->id; ?>"><?php echo JText::_($status->title); ?></div>
 			</div>					
 			<?php 
 				foreach($this->status as $stt) {

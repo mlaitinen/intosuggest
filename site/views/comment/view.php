@@ -200,7 +200,7 @@ class ViewComment extends JView {
 				echo '
 					<div id="status_title_' . $idea->id . '" class="' . 
 						($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-						($idea->status ? $idea->status : JText::_('No status')).'</div>'.
+						JText::_($idea->status ? $idea->status : 'No status').'</div>'.
 					'';
 				break;
 			case 'CONTENT':
@@ -217,16 +217,16 @@ class ViewComment extends JView {
 				echo '</div>';
 				break;
 			case 'USERNAME':
-				echo JText::_("by").' ';
+				$date = JHTML::_('date', strtotime($idea->createdate), JText::_('DATE_FORMAT_LC2'));
 				if ($user->username != "anonymous") {
-                    echo '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
+					$username = '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
 				} else { 
-					echo '<a href="javascript:void(0)">'.JText::_("anonymous").' </a>';
+					$username = '<a href="javascript:void(0)">'.JText::_("anonymous ").'</a>';
 				}
-				echo '';
+                
+                echo JText::sprintf("CREATED_ON_DATE_BY_USER", $date, $username);
 				break;
 			case 'DATECREATED':
-				echo JText::_("Created_on")." ".date($this->datetime_format, strtotime($idea->createdate));
 				break;	
 			case 'BOXVOTE':
 				$votebox = isset( $this->gconfig['votebox']->value ) ? $this->gconfig['votebox']->value : 'default.php' ;
@@ -302,7 +302,7 @@ class ViewComment extends JView {
 									foreach($this->status as $child) {
 										if($child->parent_id != $parent->id) continue;
 										if ($child->id == $idea->status_id) {
-											echo '<option value="'.$child->id.'"  selected="selected" class="status_"'.str_replace(" ", "_",strtolower($idea->status)).'">' . $child->title . '</option>';									
+											echo '<option value="'.$child->id.'"  selected="selected" class="'.str_replace(" ", "_",strtolower($idea->status)).'">' . JText::_($child->title) . '</option>';
 										}
 										else {
 											echo '<option value="'.$child->id.'">' . $child->title . '</option>';
@@ -323,7 +323,7 @@ class ViewComment extends JView {
 						echo '
 							<div id="status_title_' . $idea->id . '" class="' . 
 								($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-								($idea->status ? $idea->status : JText::_('No status')).'</div>'.'';
+								JText::_($idea->status ? $idea->status : 'No status').'</div>'.'';
 					?>
 					</div>
 				<!-- end: statuts -->

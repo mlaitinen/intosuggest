@@ -112,10 +112,10 @@ span.searchSuggest{
 .status_started{ background-color:#88BD40;}
 .status_planned{ background-color:#FF7800;}
 .status_under_review{ background-color:#F88CFC;}
-.status_accept{background-color:#FC4153;}
-.status_complete{background-color:#CCCCCC;}
-.status_decline{background-color:#BBBBBB;}
-.status_deadline{background-color:#7855FC;}
+.status_accepted{background-color:#FC4153;}
+.status_completed{background-color:#CCCCCC;}
+.status_declined{background-color:#BBBBBB;}
+.status_has_deadline{background-color:#7855FC;}
 .status_{background-color:#FFFFFF;}
 #newform .addIdea ,#editform .addIdea{
 	background-color: #fff;

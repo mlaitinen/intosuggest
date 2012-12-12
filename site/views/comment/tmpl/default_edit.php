@@ -95,7 +95,7 @@ function updateComment() {
 	var id 			= document.getElementById('comment_id').value;
 	var url 		= "index.php?option=com_intosuggest&controller=comment&task=updateComment&format=raw&id=" + id + "&content=" + fulltext;
 	if( fulltext == '' ) {
-		alert('<?php echo JText::_("Enter your comment before save.")?>');
+		alert('<?php echo JText::_("Enter your comment before save")?>');
 		return false;
 		}
 	var log = $('log_res').empty().addClass('ajax-loading');

@@ -13,7 +13,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 ?>
 <div id="tab">
 	<script type="text/javascript">
-	//default.js
 	function getForumId(){
 		return <?php echo $this->output->forum->id;?>;
 	}
@@ -79,7 +78,7 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 									foreach($this->status as $child) {
 										if($child->parent_id != $parent->id) continue;
 										if ($child->id == $idea->status_id) {
-											echo '<option value="'.$child->id.'"  selected="selected" class="status_"'.str_replace(" ", "_",strtolower($idea->status)).'">' . $child->title . '</option>';									
+											echo '<option value="'.$child->id.'"  selected="selected" class="'.str_replace(" ", "_",strtolower($idea->status)).'">' . JText::_($child->title) . '</option>';
 										}
 										else {
 											echo '<option value="'.$child->id.'">' . $child->title . '</option>';
@@ -100,7 +99,7 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 					echo '
 						<div id="status_title_' . $idea->id . '" class="' . 
 							($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-							($idea->status ? $idea->status : JText::_('No status')).'</div>'.'';
+							JText::_($idea->status ? $idea->status : 'No status').'</div>'.'';
 				?>
 				</div>
 				<!-- end: statuts -->
@@ -147,21 +146,18 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 			<div class="idea_info_bar">
 				<!-- created date -->
 				<div class="idea_datecreated">
-				<?php 
-					echo JText::_("Created_on")." ".date($this->datetime_format, strtotime($idea->createdate));
-				?>
 				</div>
 				<!-- end: created date -->
 				<!-- author -->
 				<div class="ideas_username createdby">&nbsp;<?php 
-					echo JText::_("by").' ';
-					if ($user->username != "anonymous") {
-						echo '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
-					} else { 
-						echo '<a href="javascript:void(0)">'.JText::_("anonymous").' </a>';
-					}
-					
-					echo '';
+					$date = JHTML::_('date', strtotime($idea->createdate), JText::_('DATE_FORMAT_LC2'));
+                    if ($user->username != "anonymous") {
+                        $username = '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
+                    } else { 
+                        $username = '<a href="javascript:void(0)">'.JText::_("anonymous ").'</a>';
+                    }
+
+                    echo JText::sprintf("CREATED_ON_DATE_BY_USER", $date, $username);
 				?>
 				</div>
 				<!-- end: author -->

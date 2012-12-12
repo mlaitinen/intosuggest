@@ -12,13 +12,13 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 ?>
 <div>
-	<div class="rsSearch"><?php echo JText::_("Vote for one of these?")?>
+	<div class="rsSearch"><?php echo JText::_("Vote for one of these")?>
 	<font style="font-size:8px; color:#bbb;">........ <strong style="font-size:11px"><?php echo JText::_("or")?></strong></font></div>
 	<?php if ($this->output->permission->new_idea_a == 1) {?>
 	<div class="rsSearch" onclick='document.getElementById("frm_New").href+="&idea_title="+document.getElementById("key_search").value; newForm()' style="cursor:pointer;"><a>........<?php echo JText::_("CREATE_NEW_IDEA")?></a>			
 	</div>
 	<?php }?>
 	<div class="rsSearch"><font style="font-size:8px; color:#bbb;">......................</font></div>
-	<div class="rsSearch"><a href="#" style="font-weight:bold;" onclick='btnBackTopIdeas_click(<?php echo $this->forum_id;?>)'><?php echo JText::_("Back to Top Ideas")?></a></div>
+	<div class="rsSearch"><a href="#" style="font-weight:bold;" onclick='btnBackTopIdeas_click(<?php echo $this->forum_id;?>)'><?php echo JText::_("Back to Ideas")?></a></div>
 </div>
 <div style="clear:both;"></div>

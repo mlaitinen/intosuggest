@@ -33,8 +33,9 @@ global $option;
 var outVote_s 	= 0;
 var clickVote_s = 0;
 function getUserId(){ return <?php echo $this->user->id?> }
-function getConfirmDeleteText(){return "<?php echo JText::_("Are you sure delete?")?>";}
-function getRequireCommentText(){return "<?php echo JText::_("Enter the content for comments. Please!")?>";}	
+function getConfirmDeleteText(){return "<?php echo JText::_("CONFIRM_DELETE_COMMENT")?>";}
+function getConfirmDeleteIdeaText() {return "<?php echo JText::_("CONFIRM_DELETE_IDEA")?>";}
+function getRequireCommentText(){return "<?php echo JText::_("EMPTY_COMMENT")?>";}	
 
 </script>
 <?php require_once(JPATH_ADMINISTRATOR.DS."components".DS.$option.DS."helpers".DS."themes.php");?>

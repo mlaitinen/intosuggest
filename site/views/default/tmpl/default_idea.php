@@ -45,7 +45,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 									else {
 										foreach ($this->status as $status ) {
 											if ($status->id == $this->idea->status_id) {
-												echo $status->title;
+												echo JText::_($status->title);
 												break;
 											}
 										}

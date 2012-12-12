@@ -38,7 +38,8 @@ JHTML::_('behavior.modal');
 	$document -> setDescription( $this -> ideas[0] -> content );
 ?>
 <h2><?php echo $this->forum_info->name; ?></h2>
-<script>
+<script type="text/javascript">
+function getConfirmDeleteIdeaText() {return "<?php echo JText::_("CONFIRM_DELETE_IDEA")?>";}
 var outVote_s = 0;
 var clickVote_s =0;
 jQuery.noConflict();
