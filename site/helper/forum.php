@@ -62,10 +62,11 @@ final class Forum {
 		DBase::querySQL($query);
 	}
 	public static function getTabForumById($_forum_id) {
-		$query = "SELECT st.id,st.title FROM #__intosuggest_status AS st".
+		$query = "SELECT st.id, st.title FROM #__intosuggest_status AS st".
 				 " INNER JOIN #__intosuggest_tab AS tab".
 				 " ON st.id = tab.status_id".
-				 " WHERE tab.forum_id = ".$_forum_id;
+				 " WHERE tab.forum_id = ".$_forum_id.
+                 " ORDER BY st.id ASC ";
 		//echo $query;
 		
 		/* $query = "
