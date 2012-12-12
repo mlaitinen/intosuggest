@@ -227,7 +227,7 @@ class ViewActivity extends JView {
 				echo '
 					<div id="status_title_' . $idea->id . '" class="' . 
 						($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-						($idea->status ? $idea->status : "Status / Set Close").'</div>'.
+						($idea->status ? $idea->status : JText::_('No status')).'</div>'.
 					'';
 				break;
 			case 'CONTENT':
@@ -394,7 +394,7 @@ class ViewActivity extends JView {
                 ?>
                     Change status
                     <select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
-                        <option selected="selected" value="0">Start / Set Close</option>
+                        <option selected="selected" value="0"><?php echo JText::_('No status'); ?></option>
                         <?php 
                         foreach ($this->status as $parent ) {
                             if($parent->parent_id==-1)

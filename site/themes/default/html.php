@@ -96,7 +96,7 @@
             <div class="box-changeastatus">
             Change status
                 <select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
-                    <option selected="selected" value="0">Start / Set Close</option>                       
+                    <option selected="selected" value="0"><?php echo JText::_('No status'); ?></option>                       
                 </select>
           
             </div>

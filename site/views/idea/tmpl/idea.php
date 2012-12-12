@@ -22,7 +22,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 							break;
 						}											
 					}
-					if ($this->idea->status_id == NULL ) echo "Status / Set Close";					
+					if ($this->idea->status_id == NULL ) echo JText::_('No status');
 			?>",
 	"response": "<?php if ($this->idea->response == NULL) echo JText::_("Add Response"); else echo $this->idea->response; ?>" 
 	}

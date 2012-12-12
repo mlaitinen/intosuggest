@@ -70,7 +70,7 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 					<div class="idea_changestatus">
 						<?php echo JText::_('CHANGE_STATUS'); ?>
 						<select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
-							<option selected="selected" value="0">Start / Set Close</option>
+							<option selected="selected" value="0"><?php echo JText::_('No status'); ?></option>
 							<?php
 							foreach ($this->status as $parent ) {
 								if($parent->parent_id==-1)
@@ -100,7 +100,7 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 					echo '
 						<div id="status_title_' . $idea->id . '" class="' . 
 							($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-							($idea->status ? $idea->status : "Status / Set Close").'</div>'.'';
+							($idea->status ? $idea->status : JText::_('No status')).'</div>'.'';
 				?>
 				</div>
 				<!-- end: statuts -->

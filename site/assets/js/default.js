@@ -456,7 +456,7 @@ function updateIdeaStatus(idea_id,stt_id) {
 			txt = txt.trim()					
 			var cls = "" + txt.replace(" ", "_").toLowerCase();	
 			if(txt == null || txt == ''){
-				txt = 'Start / Set Close'
+				txt = 'No status'
 				cls = "none"
 			}	
 		}
