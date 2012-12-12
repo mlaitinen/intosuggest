@@ -19,23 +19,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	}
 	</script>
 <div>
-<?php
-global $mainframe, $option, $obIsJ15;
-$script = "\n" . '<script language="javascript">
-				window.addEvent("domready", function(){' . "\n";
-if(!$obIsJ15){
-
-	$script .= '$$("#myPanel .tab_TOP").getLast().onclick=function(){clickTab("TOP")};' . "\n";
-	$script .= '$$("#myPanel .tab_HOT").getLast().onclick=function(){clickTab("HOT")};' . "\n";
-	$script .= '$$("#myPanel .tab_NEW").getLast().onclick=function(){clickTab("NEW")};' . "\n";
-
-} else {
-
-	$script .= 'document.getElementById("tab_TOP").onclick=function(){clickTab("TOP")};' . "\n";
-	$script .= 'document.getElementById("tab_HOT").onclick=function(){clickTab("HOT")};' . "\n";
-	$script .= 'document.getElementById("tab_NEW").onclick=function(){clickTab("NEW")};' . "\n";
-}
-?>
 <div>
 <?php $activeTab = &JRequest::getVar('tab', 0); ?>
 <div id="new_tabs">
