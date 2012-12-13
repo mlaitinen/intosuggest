@@ -17,7 +17,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 		<table  id="comment_<?php echo $comment->id;?>" width="100%" cellpadding="0" cellspacing="3" style=" padding-left:15px; padding-right:10px;line-height:normal;">
 			<tr>
 				<td>
-					<div style="font-size:14px;font-weight:bold;"><?php echo $user->username; ?></div>
+					<div style="font-size:14px;font-weight:bold;"><?php echo $user->name; ?></div>
 					<div  style="background-color: #FFFFBB; padding:5px;text-align:justify; border:1px solid #ccc;">
 						<?php echo $comment->comment; ?>
 					</div>		

@@ -125,8 +125,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 					</div>
 					<div class="small" style="float: left; margin-right: 5px;"> 
 						<?php echo JText::_("by")?>
-						<?php if ($user->username != "anonymous") {?>
-							<a href="index.php?option=com_intosuggest&controller=activity&user_id=<?php echo $idea->user_id?>"><?php echo $user->username;?></a>
+						<?php if ($user->name != "anonymous") {?>
+							<a href="index.php?option=com_intosuggest&controller=activity&user_id=<?php echo $idea->user_id?>"><?php echo $user->name;?></a>
 						<?php } else {?>
 								<?php echo JText::_("anonymous")?>
 						<?php }?> 

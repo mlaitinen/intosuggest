@@ -20,7 +20,7 @@ if ( count( $this->comments ) ) {
 <div class="comment-details" id="comment_<?php echo $comment->id;?>">
 	<div class="username">
 		<div class="_image">&nbsp;</div>
-		<div class="_name" style="text-align:center;"><?php echo $user->username; ?></div>
+		<div class="_name" style="text-align:center;"><?php echo $user->name; ?></div>
 	</div>
 	<div class="comment" id="comment_content_<?php echo $comment->id?>">
 		<div class="content"><?php echo $comment->comment; ?></div>
@@ -56,7 +56,7 @@ if ( count( $this->comments ) ) {
 		?>
 		<div style="margin:0px 1px 0px 1px;text-align:center;border:1px dotted #999999;background:#ffffcc;">
 		<?php 
-			echo JText::_("No comment for this idea.");
+			echo JText::_("NO_COMMENT_FOR_THIS_IDEA");
 		?>			
 		</div>
 		<?php 

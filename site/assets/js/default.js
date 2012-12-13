@@ -458,7 +458,8 @@ function updateIdeaStatus(idea_id,stt_id) {
 			if(txt == null || txt == ''){
 				txt = 'No status'
 				cls = "none"
-			}	
+            }
+            document.location.reload(true);
 		}
 	}).request();
 

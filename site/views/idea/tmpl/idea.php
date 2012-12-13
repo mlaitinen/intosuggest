@@ -24,6 +24,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 					}
 					if ($this->idea->status_id == NULL ) echo JText::_('No status');
 			?>",
-	"response": "<?php if ($this->idea->response == NULL) echo JText::_("Add Response"); else echo $this->idea->response; ?>" 
+	"response": "<?php if ($this->idea->response == NULL) echo JText::_("ADD RESPONSE"); else echo $this->idea->response; ?>" 
 	}
 ]}

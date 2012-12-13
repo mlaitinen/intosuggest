@@ -18,16 +18,16 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				<li><?php echo JText::_("Avatar")?></li>
 			</ul>
 			<ul style="float:left;">
-				<li><div style="font-size:18px;"><b><?php echo $this->user->username;?></b></div></li>
+				<li><div style="font-size:18px;"><b><?php echo $this->user->name;?></b></div></li>
 				<li><h4><b></b></h4></li>
 			</ul>
 		</div>
 		<div  style="float:left;">
 			<div class="ratingBox" style="text-align:center;">
-				<div id="count_idea" style="text-align:center;"><?php echo $this->sumideas;?></div><label><?php echo JText::_("ideas")?></label>
+				<div id="count_idea" style="text-align:center;"><?php echo $this->sumideas;?></div><label><?php echo JText::_($this->sumideas == 1 ? 'IDEA_COUNT_SINGULAR' : 'IDEA_COUNT_PLURAL'); ?></label>
 			</div>
 			<div class="ratingBox" style="text-align:center;">
-				<div style="text-align:center;" id="count_comment"><?php echo $this->sumcomments;?></div><label><?php echo JText::_("comments")?></label>
+				<div style="text-align:center;" id="count_comment"><?php echo $this->sumcomments;?></div><label><?php echo JText::_($this->sumcomments == 1 ? 'COMMENT_COUNT_SINGULAR' : 'COMMENT_COUNT_PLURAL'); ?></label>
 			</div>
 		</div>
 	</div>

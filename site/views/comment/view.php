@@ -218,8 +218,8 @@ class ViewComment extends JView {
 				break;
 			case 'USERNAME':
 				$date = JHTML::_('date', strtotime($idea->createdate), JText::_('DATE_FORMAT_LC2'));
-				if ($user->username != "anonymous") {
-					$username = '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
+				if ($user->name != "anonymous") {
+					$username = '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->name.'</a>';
 				} else { 
 					$username = '<a href="javascript:void(0)">'.JText::_("anonymous ").'</a>';
 				}

@@ -287,8 +287,8 @@ class ViewIdea extends JView {
 			case 'USERNAME':
 				
                 $date = JHTML::_('date', strtotime($idea->createdate), JText::_('DATE_FORMAT_LC2'));
-				if ($user->username != "anonymous") {
-					$username = '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->username.'</a>';
+				if ($user->name != "anonymous") {
+					$username = '<a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=activity&user_id='.$idea->user_id)).'">'.$user->name.'</a>';
 				} else { 
 					$username = '<a href="javascript:void(0)">'.JText::_("anonymous ").'</a>';
 				}
@@ -306,9 +306,10 @@ class ViewIdea extends JView {
 				break;
 			case 'COMMENTCOUNT':
 				$idea_comment = Idea::getComments($idea->id);
+                $comment_count_text = JText::_($idea_comment == 1 ? 'COMMENT_COUNT_SINGULAR' : 'COMMENT_COUNT_PLURAL');
 				?>			 
-					<font class='comment_number' id='comment_count'><?php echo $idea_comment?></font>
-					<a class="comment_text" href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id))?>"> comment(s)</a>							  
+					<font class='comment_number' id='comment_count'><?php echo $idea_comment; ?></font>
+					<a class="comment_text" href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id))?>"> <?php echo $comment_count_text; ?></a>
 				<?php 
 				break;
 			case 'READMORE':
@@ -408,7 +409,7 @@ class ViewIdea extends JView {
 				if ($idea->response != NULL ) 
 				{ 
 				?>										
-					<div id="rps-title<?php echo $idea->id; ?>" class="rs_title"><?php echo JText::_("admin response")?></div>
+					<div id="rps-title<?php echo $idea->id; ?>" class="rs_title"><?php echo JText::_('ADMIN_RESPONSE')?></div>
 					<div id="rps-content<?php echo $idea->id; ?>" class="rs_content"><?php echo $idea->response;?></div>
 				<?php 			
 					if ($can_response) 

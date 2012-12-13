@@ -26,7 +26,7 @@ final class Handy {
 			WHERE `id` = $_user_id
 		;";
 		$user = DBase::getObject($query); 
-		if ($_user_id == 0) $user->username = JText::_("anonymous");
+		if ($_user_id == 0) $user->name = JText::_("anonymous");
 		return $user;
 	}
 	public static function getStatus() {
