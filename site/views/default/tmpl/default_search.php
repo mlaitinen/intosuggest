@@ -48,7 +48,7 @@ if(!$obIsJ15){
 				</a>
 			</div>
 			<?php
-			}else echo JText::_('<div style="float:left;padding:0px 3px;">YOU_CANNOT_CREATE_NEW_IDEA!</div>');
+			}else echo '<div style="float:left;padding:0px 3px;">'.JText::_('YOU_CANNOT_CREATE_NEW_IDEA').'</div>';
 			?>
 			<div class="close-falcon" onclick="Search.displayFalcon(false)" title="Close"><?php echo JText::_('Close'); ?></div>
 		</div>	
@@ -57,7 +57,7 @@ if(!$obIsJ15){
 <script type="text/javascript">
 
 function getNoIdeaFoundText() {
-    return '<?php echo JText::_('No ideas found'); ?>';
+    return '<?php echo JText::_('NO_IDEAS_FOUND'); ?>';
 }
 
 window.addEvent("domready",

@@ -15,10 +15,10 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 ?>
 <div class="box_vote_blue">
 	<div class="sum_vote">
-		<span id="sum_vote_<?php echo $idea->id?>"><?php echo Number::getShortNumber($idea->votes); ?></span>
+		<span id="sum_vote_<?php echo $idea->id?>"><?php $voteCount = Number::getShortNumber($idea->votes); echo $voteCount; ?></span>
 	</div>
 	<div class="user_vote">
-		<div id="user_vote_<?php echo $idea->id; ?>"><?php echo ($user_vote) ? $user_vote : JText::_("VOTE"); ?></div>
+		<div id="user_vote_<?php echo $idea->id; ?>"><?php echo ($user_vote) ? $user_vote : JText::_($voteCount == 1 ? 'VOTE_COUNT_SINGULAR' : 'VOTE_COUNT_PLURAL'); ?></div>
 	</div>
 	<div class="btn_vote_wrap">
 		<div class="btn_vote" id="btn_vote_<?php echo $idea->id; ?>" onclick="<?php echo $script_display_panel_vote; ?>"><?php echo JText::_('VOTE');?></div>
@@ -30,7 +30,7 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 	<div id="<?php echo 'panel_btn_vote_'.$idea->id;; ?>" class="panel_votes" class="display_none">
 		<div class="panel_bnt_vote_title"><?php echo JText::_('Vote'); ?></div>
 		<div class="panel_bnt_vote_body">
-			<div class="votes_remaining_message">You have <span class="votes_remaining_num"><?php echo $this->remainingpoint; ?></span> votes remaining</div>
+			<div class="votes_remaining_message"><?php echo JText::sprintf('YOU_HAVE_X_VOTES_REMAINING', $this->remainingpoint); ?></div>
 			<div class="wraper_list_vote_point">
 				<ul class="list_vote_point" id="list_vote_point_<?php echo $idea->id; ?>">
 				<?php 
@@ -41,7 +41,7 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 				?>
 					<li id="<?php echo 'list_vote_point_'.$idea->id.'_'.$objVote->vote_value;?>" <?php echo ($disable_point || $hidden_point)?' class="'.$disable_point.' '.$hidden_point.'" ':''; ?>>
 						<?php //echo 'remainingpoint: '.$this->remainingpoint.'<br/>Disablepoint: '.$disable_point.'<br/>Hiddenpoint: '.$hidden_point;?>
-						<span class="updatevote" onclick="<?php echo $script; ?>"><?php echo $objVote->vote_value; ?> <?php echo ($objVote->title)? $objVote->title : JText::_('VOTE');?></span></li>
+                        <span class="updatevote" onclick="<?php echo $script; ?>">&nbsp;<?php echo $objVote->vote_value; ?>&nbsp; <?php /*echo ($objVote->title)? $objVote->title : JText::_('VOTE'); */?></span></li>
 				<?php 
 					}?>
 				</ul>
@@ -50,3 +50,9 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+    function getRemainingVoteCount() {
+        return <?php echo $voteCount; ?>;
+    }
+</script>

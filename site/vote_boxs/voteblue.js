@@ -44,8 +44,7 @@ function displayPanelVote( btnvote_id ){
 	var usevote 	= parseInt( $( 'user_vote_' + idea_id ).innerHTML );
 	var totalpoint 	= parseInt( $( 'sum_vote_' + idea_id ).innerHTML );
 
-	var remains = $$( '.votes_remaining_num' );
-	var remain = parseInt(remains[0].innerHTML);
+	var remain = getRemainingVoteCount();
 	var prefix = 'list_vote_point_'+idea_id+'_';
 	var prefix_len = prefix.length;
 	Array.each( $$( '#list_vote_point_'+idea_id+' li' ), function ( el, index ) {
