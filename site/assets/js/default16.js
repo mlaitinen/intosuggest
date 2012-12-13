@@ -181,9 +181,9 @@ function refesh(id,response){
 		rps_content += "<div style=\"text-align:right;\"><a class=\"edit-response\" href=\"javascript:void(0);\" onclick=\"addRepose('rps"+id+"')\">- Edit</a></div>"; 
 		//rps_content += "</div>";*/
 		//*[@id="rps-title662"]
-		rps_content = '<div id="rps-title'+id+'" class="rs_title">admin response</div>'
+		rps_content = '<div id="rps-title'+id+'" class="rs_title">' + getAdminResponseText() + '</div>'
 		rps_content += '<div id="rps-content'+id+'" class="rs_content">'+response+'</div>'
-		rps_content += '<a class="rs_edit" onclick="addRepose(\'rps'+id+'\')" href="javascript:void(0);">-Edit</a>'
+		rps_content += '<a class="rs_edit" onclick="addRepose(\'rps'+id+'\')" href="javascript:void(0);">' + getEditText() + '</a>'
 		document.getElementById('rps'+id).innerHTML=rps_content;
 	}	
 }

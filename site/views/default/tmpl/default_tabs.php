@@ -16,6 +16,12 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	function getForumId(){
 		return <?php echo $this->output->forum->id;?>;
 	}
+    function getAdminResponseText() {
+        return '<?php echo JText::_('ADMIN_RESPONSE'); ?>';
+    }
+    function getEditText() {
+        return '<?php echo JText::_('Edit'); ?>';
+    }
 	</script>
 <div>
 <div>
@@ -23,7 +29,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 <div id="new_tabs">
     <span>
         <?php echo ($activeTab != 0) ? '<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id).'">':'<span>'; ?>
-        <?php echo JText::_('No status'); ?>
+        <?php echo JText::_('STATUS_NO_STATUS'); ?>
         <?php echo ($activeTab != 0) ? '</a>' : '</span>'; ?>
     </span>
     <?php    foreach ($this->tabs as $tab) : ?>
@@ -69,19 +75,19 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 					<div class="idea_changestatus">
 						<?php echo JText::_('CHANGE_STATUS'); ?>
 						<select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
-							<option selected="selected" value="0"><?php echo JText::_('No status'); ?></option>
+							<option selected="selected" value="0"><?php echo JText::_('STATUS_NO_STATUS'); ?></option>
 							<?php
 							foreach ($this->status as $parent ) {
 								if($parent->parent_id==-1)
 								{
-									echo '<optgroup label="'.$parent->title.'">';
+									echo '<optgroup label="'.JTexT::_($parent->title).'">';
 									foreach($this->status as $child) {
 										if($child->parent_id != $parent->id) continue;
 										if ($child->id == $idea->status_id) {
 											echo '<option value="'.$child->id.'"  selected="selected" class="'.str_replace(" ", "_",strtolower($idea->status)).'">' . JText::_($child->title) . '</option>';
 										}
 										else {
-											echo '<option value="'.$child->id.'">' . $child->title . '</option>';
+											echo '<option value="'.$child->id.'">' . JText::_($child->title) . '</option>';
 										}
 									}
 									echo '</optgroup>';
@@ -99,7 +105,7 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 					echo '
 						<div id="status_title_' . $idea->id . '" class="' . 
 							($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-							JText::_($idea->status ? $idea->status : 'No status').'</div>'.'';
+							JText::_($idea->status ? $idea->status : JText::_('STATUS_NO_STATUS')).'</div>'.'';
 				?>
 				</div>
 				<!-- end: statuts -->
@@ -140,8 +146,9 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 		<!-- <div style="clear: both;"> -->
 			<!-- COMMENT -->
 			<div class="idea_comment_count">
-			<?php $idea_comment = Idea::getComments($idea->id); ?>
-				<a class="comment_text" href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id))?>"><span id='comment_count_<?php echo $idea->id; ?>'><?php echo $idea_comment?></span> <?php echo JText::_('comments'); ?></a>
+			<?php $idea_comment = Idea::getComments($idea->id);
+                   $comment_count_text = JText::_($idea_comment == 1 ? 'COMMENT_COUNT_SINGULAR' : 'COMMENT_COUNT_PLURAL');?>
+				<a class="comment_text" href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id))?>"><span id='comment_count_<?php echo $idea->id; ?>'><?php echo $idea_comment; ?></span> <?php echo $comment_count_text ?></a>
 			</div>
 			<div class="idea_info_bar">
 				<!-- created date -->

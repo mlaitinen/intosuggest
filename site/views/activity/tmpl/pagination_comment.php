@@ -30,7 +30,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 							<?php if (($this->output->permission->delete_comment_a == 1) || (($this->output->permission->delete_comment_o == 1) && ($this->output->user->id == $ideas->user_id))) {?>
 							<a href="#" onclick="delComment(<?php echo $comment->id;?>);">Delete</a>&nbsp;|&nbsp;
 							<?php }?>
-							<?php echo JText::_('Created on') . JHTML::_('date', strtotime($comment->createdate), JText::_('DATE_FORMAT_LC2'));  ?></div>
+							<?php echo JText::_('CREATED ON') . JHTML::_('date', strtotime($comment->createdate), JText::_('DATE_FORMAT_LC2'));  ?></div>
 						<?php if (($this->output->permission->edit_comment_a == 1) || (($this->output->permission->edit_comment_o == 1) && ($this->output->user->id == $ideas->user_id))) {?>
 						<div class="active" id ="edt<?php echo $comment->id;?>" style="float:right;" onClick="onedit(<?php echo $comment->id;?>)" >
 								<a href="javascript:void(0);">Edit</a>&nbsp;|&nbsp; 

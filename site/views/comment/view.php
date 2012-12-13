@@ -200,7 +200,7 @@ class ViewComment extends JView {
 				echo '
 					<div id="status_title_' . $idea->id . '" class="' . 
 						($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-						JText::_($idea->status ? $idea->status : 'No status').'</div>'.
+						JText::_($idea->status ? $idea->status : 'STATUS_NO_STATUS').'</div>'.
 					'';
 				break;
 			case 'CONTENT':
@@ -234,8 +234,9 @@ class ViewComment extends JView {
 
 				break;
 			case 'COMMENTCOUNT':
-				$idea_comment = Idea::getComments($idea->id); ?>
-				<a class="comment_text" href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id))?>"><span id='comment_count_<?php echo $idea->id; ?>'><?php echo $idea_comment?></span> <?php echo JText::_('comments'); ?></a>
+				$idea_comment = Idea::getComments($idea->id); 
+                $comment_count_text = JText::_($idea_comment == 1 ? 'COMMENT_COUNT_SINGULAR' : 'COMMENT_COUNT_PLURAL'); ?>
+				<a class="comment_text" href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id))?>"><span id='comment_count_<?php echo $idea->id; ?>'><?php echo $idea_comment?></span> <?php echo $comment_count_text; ?></a>
 				<?php 
 				break;
 			case 'READMORE':
@@ -293,19 +294,19 @@ class ViewComment extends JView {
 					<div class="idea_changestatus">
 						<?php echo JText::_('CHANGE_STATUS'); ?>
 						<select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
-							<option selected="selected" value="0"><?php echo JText::_('No status'); ?></option>
+							<option selected="selected" value="0"><?php echo JText::_('STATUS_NO_STATUS'); ?></option>
 							<?php
 							foreach ($this->status as $parent ) {
 								if($parent->parent_id==-1)
 								{
-									echo '<optgroup label="'.$parent->title.'">';
+									echo '<optgroup label="'.JText::_($parent->title).'">';
 									foreach($this->status as $child) {
 										if($child->parent_id != $parent->id) continue;
 										if ($child->id == $idea->status_id) {
 											echo '<option value="'.$child->id.'"  selected="selected" class="'.str_replace(" ", "_",strtolower($idea->status)).'">' . JText::_($child->title) . '</option>';
 										}
 										else {
-											echo '<option value="'.$child->id.'">' . $child->title . '</option>';
+											echo '<option value="'.$child->id.'">' . JText::_($child->title) . '</option>';
 										}
 									}
 									echo '</optgroup>';
@@ -323,7 +324,7 @@ class ViewComment extends JView {
 						echo '
 							<div id="status_title_' . $idea->id . '" class="' . 
 								($idea->status ? str_replace(" ", "_",strtolower($idea->status)) : "none") .'">'.
-								JText::_($idea->status ? $idea->status : 'No status').'</div>'.'';
+								JText::_($idea->status ? $idea->status : 'STATUS_NO_STATUS').'</div>'.'';
 					?>
 					</div>
 				<!-- end: statuts -->

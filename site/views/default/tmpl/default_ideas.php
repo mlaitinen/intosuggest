@@ -53,7 +53,7 @@ function clickVote(){
 		if(JRequest::getString("controller")=="comment")
 			$mainframe->redirect(JRoute::_("index.php?option=$option"));
 	?>
-		<div style="margin:0px 1px 0px 1px;text-align:center;border:1px dotted #999999;background:#ffffcc;"><?echo JText::_("NO_IDEA_FOUND");?></div>
+		<div style="margin:0px 1px 0px 1px;text-align:center;border:1px dotted #999999;background:#ffffcc;"><?echo JText::_("NO_IDEAS_FOUND");?></div>
 	<?php 
 	}
 	?>	

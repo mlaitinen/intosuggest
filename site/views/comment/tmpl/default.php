@@ -40,6 +40,13 @@ JHTML::_('behavior.modal');
 <h2><?php echo $this->forum_info->name; ?></h2>
 <script type="text/javascript">
 function getConfirmDeleteIdeaText() {return "<?php echo JText::_("CONFIRM_DELETE_IDEA")?>";}
+function getAdminResponseText() {
+    return '<?php echo JText::_('ADMIN_RESPONSE'); ?>';
+}
+function getEditText() {
+    return '<?php echo JText::_('Edit'); ?>';
+}
+
 var outVote_s = 0;
 var clickVote_s =0;
 jQuery.noConflict();

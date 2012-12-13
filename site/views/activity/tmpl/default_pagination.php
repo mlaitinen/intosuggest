@@ -44,7 +44,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 					<div class="title" style="font-size: 16px;">
 						<span id="title<?php echo $idea->id; ?>"><?php echo $idea->title; ?></span>						
 						<?php 
-								$status_text = JText::_('No status');
+								$status_text = JText::_('STATUS_NO_STATUS');
 								if ($idea->status_id != 0) {  									
 									$dem=1;
 									$status_text = '';

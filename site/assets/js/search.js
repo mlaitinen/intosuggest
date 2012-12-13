@@ -160,7 +160,7 @@ var Search = {
 				Search.setupControl();
 				if(Search.iIdeaCount == 0)
 				{					
-					Search.tab.innerHTML = '<div class="idea-notfound">No idea found!<div>';					
+					Search.tab.innerHTML = '<div class="idea-notfound">' + getNoIdeaFoundText() + '<div>';					
 				}								
 			}
 		}).request();		

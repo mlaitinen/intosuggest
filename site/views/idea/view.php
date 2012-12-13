@@ -368,12 +368,12 @@ class ViewIdea extends JView {
 				?>
 					Change status
 					<select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
-						<option selected="selected" value="0"><?php echo JText::_('No status'); ?></option>
+						<option selected="selected" value="0"><?php echo JText::_('STATUS_NO_STATUS'); ?></option>
 						<?php 
 						foreach ($this->status as $parent ) {
 							if($parent->parent_id==-1)
 							{
-								echo '<optgroup label="'.$parent->title.'">';
+								echo '<optgroup label="'.JText::_($parent->title).'">';
 								foreach($this->status as $child)
 								{		
 									if($child->parent_id != $parent->id) continue;																										
@@ -382,7 +382,7 @@ class ViewIdea extends JView {
 									}		
 									else
 									{
-										echo '<option value="'.$child->id.'">' . $child->title . '</option>';
+										echo '<option value="'.$child->id.'">' . JText::_($child->title) . '</option>';
 									}		
 								}						
 								echo '</optgroup>';
