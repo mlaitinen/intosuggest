@@ -16,11 +16,29 @@ final class Permission {
 	}
 	
 	public static function getPermissionById($_gid = 0) {
-		if( is_array( $_gid ) && !count( $_gid ) ) {
-			$_gid = 0;
-		}
-# build null permission
-$null_permission = new stdClass();
+
+        
+        if(is_array($_gid)) {
+            if(!count($_gid)) {
+                $_gid = 0;
+            }
+        } else {
+            // I would've placed this in the calling class, but the original author has
+            // totally ignored the DRY principle, so I think I'll just put this right here.
+            $user =& JFactory::getUser();
+            $userid = $user->get('id');
+            $query = "SELECT g.group_id FROM #__core_acl_groups_aro_map AS g "
+                    ."INNER JOIN #__core_acl_aro AS u ON g.aro_id = u.id "
+                    ."WHERE u.value = $userid";
+            
+            $db 	= &JFactory::getDbo();
+			$db->setQuery($query);
+			$_gid = $db->loadResultArray();
+        }
+        
+        
+        # build null permission
+        $null_permission = new stdClass();
 		$null_permission->new_idea_a 		= 0;
 		$null_permission->new_idea_o 		= 0;
 		$null_permission->edit_idea_a 		= 0;
