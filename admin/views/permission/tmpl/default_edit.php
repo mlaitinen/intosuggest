@@ -44,7 +44,7 @@ fieldset label {clear: none}
 						<td>
 							<input type="checkbox" name="delete_idea_a" id="delete_idea_a" value="1"<?php if ($this->permission->delete_idea_a == 1) echo "checked='checked'"?>/>
 							<label for="delete_idea_a"><?php echo JText::_('Anyone')?></label>
-							<input type="checkbox" name="edit_idea_o" id="delete_idea_o" value="1"<?php if ($this->permission->delete_idea_o == 1) echo "checked='checked'"?>/>
+							<input type="checkbox" name="delete_idea_o" id="delete_idea_o" value="1"<?php if ($this->permission->delete_idea_o == 1) echo "checked='checked'"?>/>
 							<label for="delete_idea_o"><?php echo JText::_('Own')?></label>
 						</td>
 					</tr>
