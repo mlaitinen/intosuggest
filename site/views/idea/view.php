@@ -366,8 +366,9 @@ class ViewIdea extends JView {
 					(($this->output->permission->change_status_o == 1) && ($this->output->user->id == $idea->user_id))
 				) 
 				{
-				?>
-					Change status
+				
+					echo JText::_('CHANGE_STATUS');
+                    ?>
 					<select onchange="updateIdeaStatus(<?php echo $idea->id?>,this.value)" >
 						<option selected="selected" value="0"><?php echo JText::_('STATUS_NO_STATUS'); ?></option>
 						<?php 
