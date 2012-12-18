@@ -98,12 +98,5 @@ window.addEvent("domready", function() {
 			<input <?php echo $style; ?>id="input_limitpoint" type="text" name="forum_limitpoint" value="<?php echo $this->output->forum->limitpoint; ?>">
 		</td>
 	</tr>
-	<?php if ((strcmp($controller,'forum')  == 0) & (strcmp($task,'view') != 0)) {?>
-	<tr>
-		<td colspan="2">
-			<input type="button" name="default" value="<?php echo JText::_("Load_Default")?>" onclick="btnDefault_click()" style="width: 100%;">
-		</td>
-	</tr>
-	<?php }?>
 </table>
 </fieldset>

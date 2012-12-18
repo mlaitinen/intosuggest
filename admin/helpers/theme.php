@@ -22,22 +22,15 @@ final class Theme {
 		$permission 	= 'index.php?option=com_intosuggest&controller=permission';
 		$export_import 	= 'index.php?option=com_intosuggest&controller=exportimport';
 		$vote 			= 'index.php?option=com_intosuggest&controller=vote';
-		$upgrade 		= 'index.php?option=com_intosuggest&controller=upgrade';
-		$langs			= 'index.php?option=com_intosuggest&controller=langs';
-		$report			= 'index.php?option=com_intosuggest&controller=report';
-		$themes			= 'index.php?option=com_intosuggest&controller=themes';
 		$controller 	= &JRequest::getVar('controller');
 		JSubMenuHelper::addEntry( JText::_('CONTROL_PANEL')	, $default	, ( $controller=='default' || !$controller ) );
 		JSubMenuHelper::addEntry( JText::_('FORUM_MANAGER')	, $forum	, ( $controller=='forum') );
 		JSubMenuHelper::addEntry( JText::_('IDEA_MANAGER')	, $idea		, ( $controller=='idea') );
-		JSubMenuHelper::addEntry( JText::_('LANGUAGES')		, $langs	, ( $controller=='langs') );
 		JSubMenuHelper::addEntry( JText::_('PERMISSION')	, $permission, ( $controller=='permission') );
 		JSubMenuHelper::addEntry( JText::_('EXPORT_SLASH_IMPORT'), $export_import, ( $controller=='exportimport'));
 		JSubMenuHelper::addEntry( JText::_('VOTE'), $vote, ( $controller=='vote') );
-		JSubMenuHelper::addEntry( JText::_('UPGRADE'), $upgrade, ( $controller=='upgrade') );
-//		JSubMenuHelper::addEntry( JText::_('Report'), $report, ( $controller=='report') );
-//		JSubMenuHelper::addEntry( JText::_('Themes'), $themes, ( $controller=='themes') );
 	}
+    
 	public static function dispSubMenuConFig() {
 		$default = 'index.php?option=com_intosuggest&controller=default';		
 		$forum = 'index.php?option=com_intosuggest&controller=forum';						
@@ -45,10 +38,6 @@ final class Theme {
 		$permission = 'index.php?option=com_intosuggest&controller=permission';
 		$export_import = 'index.php?option=com_intosuggest&controller=exportimport';
 		$vote = 'index.php?option=com_intosuggest&controller=vote';
-		$upgrade = 'index.php?option=com_intosuggest&controller=upgrade';
-		$langs	=	'index.php?option=com_intosuggest&controller=langs';
-		$report	=	'index.php?option=com_intosuggest&controller=report';
-		$themes	=	'index.php?option=com_intosuggest&controller=themes';
 		$res = new stdClass();
 		$res->default  		= $default;
 		$res->forum 		= $forum;
@@ -56,10 +45,6 @@ final class Theme {
 		$res->permission	= $permission;
 		$res->export_import = $export_import;
 		$res->vote 			= $vote;
-		$res->upgrade 		= $upgrade;
-		$res->langs			= $langs;
-		$res->report		= $report;
-		$res->themes		= $themes;
 		return $res;
 	}
 	

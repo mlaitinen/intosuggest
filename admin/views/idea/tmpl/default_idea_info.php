@@ -13,11 +13,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 <?php
 	foreach($this->output->status as $status) {
 		if ($status->parent_id == -1) {
-			$option_status[] = JHTML::_('select.option','0','Not Status');
-			$option_status[] = JHTML::_('select.Optgroup',$status->title) ;
+			$option_status[] = JHTML::_('select.option', '0', JText::_('STATUS_NO_STATUS'));
+			$option_status[] = JHTML::_('select.Optgroup', JText::_($status->title));
 			foreach($this->output->status as $stt) {
 				if ($stt->parent_id == $status->id) {
-					$option_status[] = JHTML::_('select.option',$stt->id,$stt->title) ;
+					$option_status[] = JHTML::_('select.option',$stt->id,JText::_($stt->title));
 				}
 			}
 		}

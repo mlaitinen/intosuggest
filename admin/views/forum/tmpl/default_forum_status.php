@@ -40,7 +40,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 		<tr class="row<?php echo $k;?>">
 			<td align="center"><?php echo $i;?></td>
 			<td align="center"><input type="checkbox" name="status_id[]" value="<?php echo $status->id;?>"<?php if ($status->published == 1) echo "checked='checked'"; ?>/>
-			<td><?php echo $status->title;?></td>
+			<td><?php echo JText::_($status->title);?></td>
 			<a href="index.php?option=com_intosuggest&controller=forum&task=editTab&id=<?php echo $this->output->id?>&status_id=<?php echo $status->id;?>&value=<?php echo (1-$status->published);?>">
 			<td align="center">				
 				<?php echo $published; ?>				

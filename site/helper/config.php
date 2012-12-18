@@ -31,9 +31,11 @@ final class Config {
 	}
 	public static function fixBadWord($_strWord) {
 		$param = Config::getBadWord();
-		foreach ($param as $value) {
-			$_strWord = str_replace($value['badword'],$value['fixword'],$_strWord);
-		}
+        if($param != null) {
+            foreach ($param as $value) {
+                $_strWord = str_replace($value['badword'],$value['fixword'],$_strWord);
+            }
+        }
 		return Config::removeBadChar($_strWord);
 	}
 	

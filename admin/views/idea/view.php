@@ -35,6 +35,11 @@ class ViewIdea extends JView {
 		$pagination = $this->get('Pagination');
 		//var_dump($output);
 		
+        foreach ($status as &$s)
+        {
+            $s->title = JText::_($s->title);
+        }
+        
 		$this->assignRef('ideas', $ideas);
 		$this->assignRef('status', $status);
 		$this->assignRef('output', $output);
@@ -95,7 +100,7 @@ class ViewIdea extends JView {
 	}
 	
 	function getStatusById($_id = 0) {
-		if ($_id == 0) return JText::_("Not Status");
+		if ($_id == 0) return JText::_("STATUS_NO_STATUS");
 		$rs = Handy::getStatusById($_id);
 		return $rs->title;
 	}

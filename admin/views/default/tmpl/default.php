@@ -19,10 +19,6 @@ $idea 			 = $image->idea;
 $permission 	 = $image->permission;
 $export_import 	 = $image->export_import;
 $vote  			 = $image->vote;
-$upgrade  		 = $image->upgrade;
-$langs			 = $image->langs;
-$report			= $image->report;
-$themes			= $image->themes;
 
 $url 			 = 'components/com_intosuggest/assets/images/icons/';
 ?>
@@ -76,39 +72,6 @@ $url 			 = 'components/com_intosuggest/assets/images/icons/';
 					<?php echo JHTML::_('image.site','vote_48.png',$url, NULL, NULL, JText::_('VOTE') ); ?>
 					<span><?php echo JText::_('VOTE'); ?></span>
 					</a>
-					</div>
-				</div>
-				<div style="float:left;">
-					<div class="icon">
-					<a href="<?php echo $upgrade;?>">
-					<?php echo JHTML::_('image.site','support_48.png',$url, NULL, NULL, JText::_('SUPPORT') ); ?>
-					<span><?php echo JText::_('SUPPORT'); ?></span>
-					</a>
-					</div>
-				</div>
-				<div style="float:left;">
-					<div class="icon">
-					<a href="<?php echo $langs;?>">
-					<?php echo JHTML::_('image.site','langs_48.png',$url, NULL, NULL, JText::_('LANGUAGES') ); ?>
-					<span><?php echo JText::_('LANGUAGES'); ?></span>
-					</a>
-					</div>
-				</div>
-<!--
-				<div style="float:left;">
-					<div class="icon">
-					<a href="<?php echo $report;?>">
-					<?php echo JHTML::_('image.site','report_48.png',$url, NULL, NULL, JText::_('REPORTS') ); ?>
-					<span><?php echo JText::_('REPORTS'); ?></span>
-					</a>
-					</div>
-				</div>
--->
-				<div style="float:left;">
-					<div class="icon">
-						<a href="<?php echo $themes;?>">
-							<?php echo JHTML::_('image.site','theme_48.png',$url, NULL, NULL, JText::_('THEMES') ); ?>
-							<span><?php echo JText::_('THEMES'); ?></span></a>
 					</div>
 				</div>
 			</div>

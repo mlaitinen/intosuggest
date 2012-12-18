@@ -194,19 +194,4 @@ class TOOLBAR_intosuggest
 		JToolBarHelper::save('save');						
 		JToolBarHelper::cancel();
 	}
-	function _Upgrade(){
-		JToolBarHelper::title( JText::_('SUPPORT'),'support.png' );
-		JToolBarHelper::preferences('com_intosuggest', 120, 440, JText::_('License'));
-		JToolBarHelper::help('upgrade', true);
-	}
-	function _Report()
-	{
-		JToolBarHelper::title( JText::_('Reports'),'report.png' );
-		
-	}
-	function _Themes()
-	{
-		JToolBarHelper::title( JText::_('Themes'),'theme.png' );
-		
-	}
 }

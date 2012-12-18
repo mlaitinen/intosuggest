@@ -26,7 +26,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			<td>
 				<div style="font-weight: bolder;color: #0B55C4;"><a href="index.php?option=com_intosuggest&controller=permission&task=edit&gid=0"><?php echo JText::_('VISITOR'); ?></a></div>				
 			</td>
-			<td><?php echo JText::_('All Joomla authors are automatically in this group. This group cannot be removed!')?></td>
+			<td><?php echo JText::_('UNREGISTERED_USERS')?></td>
 			<td align="center"><?php echo JText::_('ANYONE')?></td>			
 		</tr>
 	<?php
@@ -36,9 +36,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 		<tr style="height: 10px;" class="row<?php echo $k?>">
 			<td><?php echo $group->id; ?></td>
 			<td>
-				<div style="font-weight: bolder;color: #0B55C4;"><a href="index.php?option=com_intosuggest&controller=permission&task=edit&gid=<?php echo $group->id; ?>"><?php echo $group->name; ?></a></div>
+				<div style="font-weight: bolder;color: #0B55C4;"><a href="index.php?option=com_intosuggest&controller=permission&task=edit&gid=<?php echo $group->id; ?>"><?php echo JText::_($group->name); ?></a></div>
 			</td>
-			<td><?php echo JText::sprintf('All Joomla %s are automatically in this group. This group cannot be removed!',$group->name)?></td>
+			<td><?php echo JText::sprintf('ALL_JOOMLA_X_ARE_AUTOMATICALLY_IN_THIS_GROUP', JText::_($group->name)); ?></td>
 			<td align="center"><?php echo JText::_('AUTOMATIC')?></td>
 		</tr>
 	<?php

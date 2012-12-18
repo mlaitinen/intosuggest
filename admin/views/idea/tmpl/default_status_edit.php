@@ -38,7 +38,7 @@ foreach ($this->ParentStatus as $prStatus) {
 <form name="adminForm" id="adminForm" action="index.php?option=com_intosuggest&controller=idea&sign=status" method="POST">
 <table class="admintable">
 	<tr>
-		<td class="key"><?php echo JText::_("Catelogy")?></td>
+		<td class="key"><?php echo JText::_("Category")?></td>
 		<td><?php echo JHTML::_('select.genericlist',$option,'someoption',null,'value','text',0); ?></td>
 	</tr>
 	<tr>

@@ -26,17 +26,11 @@ class ViewConfig extends JView {
 	function display($tmp = null) {
 
 		$output 		= $this->get( 'Output' );
-		$listDatetime 	= $this->getModel('config')->getDatetimeList();
 		$gconfig 		= $this->get( 'GConfig' );
 
 		$this->assignRef( 'gconfig', $gconfig );
 		$this->assignRef( 'output', $output );
-		$this->assignRef( 'listDatetime', $listDatetime );
 		parent::display( $tmp );
-	}
-
-	function displayDatetimeList(){
-		$this->display("datetime_list");
 	}
 
 }

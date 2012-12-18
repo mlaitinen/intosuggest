@@ -87,51 +87,6 @@ switch ($controller) {
 				break;
 		}
 	break;	
-	case 'upgrade':
-		switch ($task) {
-			default:
-				TOOLBAR_intosuggest::_Upgrade();
-				break;
-		}	
-		break;
-	case 'report':
-		TOOLBAR_intosuggest::_Report();
-		break;
-	case 'themes':
-		TOOLBAR_intosuggest::_Themes();
-		break;	
 	default:
 		break;	
 }
-/**
-switch ($task)
-{
-	case 'add':
-	case 'new_intosuggest_typed':
-	case 'new_intosuggest_section':
-		TOOLBAR_intosuggest::_EDIT(false);
-		break;
-	case 'edit':
-	case 'editA':
-	case 'edit_intosuggest_typed':
-		TOOLBAR_intosuggest::_EDIT(true);
-		break;
-/*
-	case 'showarchive':
-		TOOLBAR_intosuggest::_ARCHIVE();
-		break;
-
-	case 'movesect':
-		TOOLBAR_intosuggest::_MOVE();
-		break;
-
-	case 'copy':
-		TOOLBAR_intosuggest::_COPY();
-		break;
-
-	default:
-		TOOLBAR_intosuggest::_DEFAULT();
-		break;
-
-}
-*/

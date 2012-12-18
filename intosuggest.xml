@@ -36,13 +36,9 @@
 			<menu link="option=com_intosuggest&amp;controller=default" img="../administrator/components/com_intosuggest/assets/images/icons/cpanel_16.png">CONTROL_PANEL</menu>
 			<menu link="option=com_intosuggest&amp;controller=forum" img="../administrator/components/com_intosuggest/assets/images/icons/forum_16.png">FORUM_MANAGER</menu>
 			<menu link="option=com_intosuggest&amp;controller=idea" img="../administrator/components/com_intosuggest/assets/images/icons/idea_16.png">IDEA_MANAGER</menu>
-			<menu link="option=com_intosuggest&amp;controller=langs" img="../administrator/components/com_intosuggest/assets/images/icons/langs_16.png">TRANSLATION</menu>
 			<menu link="option=com_intosuggest&amp;controller=permission" img="../administrator/components/com_intosuggest/assets/images/icons/permission_16.png">PERMISSION</menu>
 			<menu link="option=com_intosuggest&amp;controller=exportimport" img="../administrator/components/com_intosuggest/assets/images/icons/import_16.png">IMPORT_EXPORT</menu>
 			<menu link="option=com_intosuggest&amp;controller=vote" img="../administrator/components/com_intosuggest/assets/images/icons/vote_16.png">VOTE</menu>
-			<menu link="option=com_intosuggest&amp;controller=upgrade" img="../administrator/components/com_intosuggest/assets/images/icons/support_16.png">SUPPORT</menu>
-			<!-- <menu link="option=com_intosuggest&amp;controller=report" img="../administrator/components/com_intosuggest/assets/images/icons/report_16.png">REPORTS</menu>
-			<menu link="option=com_intosuggest&amp;controller=themes" img="../administrator/components/com_intosuggest/assets/images/icons/theme_16.png">THEMES</menu> -->
 		</submenu>
 
 		<files folder="admin">

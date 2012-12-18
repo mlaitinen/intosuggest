@@ -77,7 +77,7 @@ class ViewVote extends JView {
 	}
 	
 	function getStatusById($_id = 0) {
-		if ($_id == 0) return JText::_("Not Status");
+		if ($_id == 0) return JText::_("STATUS_NO_STATUS");
 		$rs = Handy::getStatusById($_id);
 		return $rs->title;
 	}
