@@ -182,38 +182,20 @@ for ( $i = 0; $i<count( $ideas ); $i++ ) {
 					<?php #=$this->displayBox("ACTIONS") ?>
 					<a id="frm_Edit_<?php echo $idea->id?>" href="<?php echo JRoute::_('index.php?option=com_intosuggest&controller=idea&task=editIdea&id='.$idea->id.'&format=raw')?>" rel="{handler: 'iframe',size: {x: 418, y: 310}}"></a> 
 					<?php 
-						$edit = '';
 						if (
 							($this->output->permission->edit_idea_a == 1) || 
 							(($this->output->permission->edit_idea_o == 1) && ($this->idea_output->user->id == $idea->user_id))) 
 						{
-							//$edit = '<option value="onedit(\''.$idea->id.'\')">'.JText::_("Edit").'</option>';//  onclick="onedit(<?php echo $idea->id; 
-							#$edit	= '<input type="button" value="'.JText::_("Edit").'" onclick="onedit(\''.$idea->id.'\')">';
-							$edit	= '<img src="'.JURI::base().'/components/com_intosuggest/themes/default/images/edit.png" alt="Edit" width="16" height="16" onclick="onedit(\''.$idea->id.'\')" />';
+							echo '<img src="'.JURI::base().'/components/com_intosuggest/themes/default/images/edit.png" alt="Edit" width="16" height="16" onclick="onedit(\''.$idea->id.'\')" />';
 						}
 					?>
 					<?php 
-						$delete = '';
 						if (
 							($this->output->permission->delete_idea_a == 1) || 
-							(($this->output->permission->delete_idea_o == 1) && ($this->output->user->id == $idea->user_id))
+							(($this->output->permission->delete_idea_o == 1) && ($this->idea_output->user->id == $idea->user_id))
 						) 
 						{
-							//delete = '<option value="ondel(\''.$idea->id.'\')">'.JText::_("Delete").'</option>';
-							#$delete	= '<input type="button" value="'.JText::_("Delete").'" onclick="ondel(\''.$idea->id.'\')">';
-							$delete	= '<img src="'.JURI::base().'/components/com_intosuggest/themes/default/images/remove.png" alt="Remove" width="16" height="16" onclick="ondel(\''.$idea->id.'\')" />';
-						}
-					?>
-					<?php 
-						if( $edit!='' || $delete != '')
-						{
-					?>	
-						<!--<input type="button" value="Action" onclick="eval(document.getElementById('sl_<?php echo $idea->id?>').value)" />
-						<select id="sl_<?php echo $idea->id; ?>">-->
-							<?php echo $edit; ?>
-							<?php echo $delete; ?>
-						<!--</select>-->
-					<?php
+							echo '<img src="'.JURI::base().'/components/com_intosuggest/themes/default/images/remove.png" alt="Remove" width="16" height="16" onclick="ondel(\''.$idea->id.'\')" />';
 						}
 					?>
 				</div>
