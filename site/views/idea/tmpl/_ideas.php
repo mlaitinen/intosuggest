@@ -63,7 +63,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				<tr>
 					<?php if ($idea->response == NULL ) { ?>
 					<td id="rps<?php echo $idea->id; ?>">
-						<div onclick="addRepose('rps<?php echo $idea->id; ?>')" onmousemove="onmove('rps<?php echo $idea->id; ?>')" onmouseout="onout('rps<?php echo $idea->id; ?>')"><i>Add Response</i></div>
+						<div onclick="addRepose('rps<?php echo $idea->id; ?>')" onmousemove="onmove('rps<?php echo $idea->id; ?>')" onmouseout="onout('rps<?php echo $idea->id; ?>')"><i><?php echo JText::_('Add Response'); ?></i></div>
 					</td>
 					<?php } else { ?>
 					<td>

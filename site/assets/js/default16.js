@@ -174,21 +174,10 @@ function lstVote_change(vote,idea_id) {
 function refesh(id,response){
 	response = response.trim();
 	if(response == "") {
-		/*rps_content = "<div style=\"text-align: right;\" onclick=\"addRepose('rps"+id+"')\">";
-		rps_content = rps_content + "<a href=\"#\" id=\"rps-content"+id+"\" onclick=\"return false;\" class=\"add-response\">Add Response</a>";
-		rps_content = rps_content+ "</div>";*/
-		rps_content = '<a class="rs_add" href="javascript:addRepose(\'rps'+id+'\')">Add Response</a>'
+		rps_content = '<a class="rs_add" href="javascript:addRepose(\'rps'+id+'\')">' + getAddResponseText() + '</a>'
 		document.getElementById('rps'+id).innerHTML=rps_content;
 	}
 	else {
-		//document.getElementById('rps'+id).className='Response';
-		//txt = "<div style=\"font-weight:bold; color:#7d7d7d\">Admin response</div><div style=\"padding-left:10px; background-color: #FFF;\" onclick=\"addRepose('rps"+id+"')\"><i>"+response+"</i></div>";
-		//rps_content = "<div style=\"padding-left: 5px;padding-top: 5px; text-align: left;margin-left: 5px; margin-right: 5px;  border-top: 1px solid #BBB; background-color: #EEE\">";
-		/*rps_content = "<div id=\"rps-title"+id+"\" class=\"title\">admin response</div>";
-		rps_content += "<div id=\"rps-content"+id+"\" class=\"rps-content\"><i>"+response+"</i></div>";
-		rps_content += "<div style=\"text-align:right;\"><a class=\"edit-response\" href=\"javascript:void(0);\" onclick=\"addRepose('rps"+id+"')\">- Edit</a></div>"; 
-		//rps_content += "</div>";*/
-		//*[@id="rps-title662"]
 		rps_content = '<div id="rps-title'+id+'" class="rs_title">' + getAdminResponseText() + '</div>'
 		rps_content += '<div id="rps-content'+id+'" class="rs_content">'+response+'</div>'
 		rps_content += '<a class="rs_edit" onclick="addRepose(\'rps'+id+'\')" href="javascript:void(0);">' + getEditText() + '</a>'

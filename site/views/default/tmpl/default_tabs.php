@@ -22,6 +22,15 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
     function getEditText() {
         return '<?php echo JText::_('Edit'); ?>';
     }
+    function getAddResponseText() {
+        return '<?php echo JText::_('ADD_RESPONSE'); ?>';
+    }
+    function getSaveText() {
+        return '<?php echo JText::_('SAVE'); ?>';
+    }
+    function getCancelText() {
+        return '<?php echo JText::_('CANCEL'); ?>';
+    }
 	</script>
 <div>
 <div>
