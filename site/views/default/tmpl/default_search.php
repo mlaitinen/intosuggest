@@ -24,7 +24,7 @@ if(!$obIsJ15){
 	</div>
 	<div class="box-search">
 		<div class="box_search_div_1">
-			<input type="text" id="key_search" value='<?php echo $this->getKeySearch();?>' onfocus="this.cache = this.value;this.value=''" onkeyup="this.cache=this.value;" onblur="this.value=this.cache;">
+			<input type="text" maxlength="60" id="key_search" value='<?php echo $this->getKeySearch();?>' onfocus="this.cache = this.value;this.value=''" onkeyup="this.cache=this.value;" onblur="this.value=this.cache;">
 		</div>
 		<div class="box_search_div_2">
 <!-- 			<input type="button" value="Search" id="button_search"> -->

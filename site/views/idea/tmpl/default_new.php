@@ -131,7 +131,7 @@ function addIdea(){
 				<div id="idea_title">
 					<div>
 						<div><p><?php echo JText::_("Title")?></p></div>
-						<div><input class="textinput" type="text" name="title" value="<?php echo $this->idea_title?>" /></div>
+                        <div><input maxlength="60" class="textinput" type="text" name="title" value="<?php echo $this->idea_title?>" /></div>
 						<div><p><?php echo JText::_("Description")?></p></div>
 						<div><textarea name="fulltext"></textarea></div>
 						<div>
