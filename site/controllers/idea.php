@@ -11,6 +11,8 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.controller');
+jimport('joomla.utilities.date');
+
 require_once (JPATH_COMPONENT.DS.'helper'.DS.'forum.php');
 
 class ControllerIdea extends JController {
@@ -68,11 +70,13 @@ class ControllerIdea extends JController {
 			return;
 		}
 
+        $input = array();
 		$input['title'] = $title;
 		$input['forum_id'] = $forum_id;
 		$input['content'] = $content;
 		$input['user_id'] = $this->user->id;
-		$input['createdate'] = $this->getDateTime();
+        $date = new JDate();
+		$input['createdate'] = $date->toFormat();
 		
 		$model = &$this->getModel('idea');
 		$model->setForumId($forum_id);
@@ -87,9 +91,7 @@ class ControllerIdea extends JController {
 		}	
 		*/
 	}
-	function getDateTime() {
-		return date("Y-m-d H:i:s");
-	}
+
 	function getIdea() {
 		$id = &JRequest::getVar('id');
 		

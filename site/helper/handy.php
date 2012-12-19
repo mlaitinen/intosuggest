@@ -14,11 +14,7 @@ require_once(JPATH_COMPONENT.DS."helper".DS."dbase.php");
 final class Handy {
 	function __construct() {
 	}
-	
-	public static function getDateTime() {
-		return date("Y-m-d H:i:s");
-	}
-	
+		
 	public static function getUser($_user_id = 0) {		
 		$query = "
 			SELECT *

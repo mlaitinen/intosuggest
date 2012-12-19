@@ -87,8 +87,6 @@ class ViewComment extends JView {
 		$model->setIdeaId($idea_id);
 		$comments = $model->getComments();
 		$output = $this->get('Output');
-		$output->permission->delete_idea_a = 0;
-		$output->permission->delete_idea_o = 0;
 		$ideas = $this->get('Idea');		
 		
 		$this->assignRef('comments',$comments);
@@ -118,8 +116,6 @@ class ViewComment extends JView {
 		$model = &$this->getModel('comment');
 		$comments = $model->getComments();
 		$output = $this->get('Output');
-		$output->permission->delete_idea_a = 0;
-		$output->permission->delete_idea_o = 0;
 		$ideas = $this->get('Idea');		
 		
 		$this->assignRef('comments',$comments);

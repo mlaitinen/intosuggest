@@ -12,6 +12,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 require_once(JPATH_COMPONENT.DS."helper".DS."handy.php");
 jimport('joomla.application.component.controller');
+jimport('joomla.utilities.date');
 
 class ControllerComment extends JController {
 	private $user;
@@ -130,16 +131,16 @@ class ControllerComment extends JController {
 		}
 		
 		$anonymous 	= &JRequest::getVar('anonymous',0);
-//		echo $anonymous;
-//		
-//		echo '<pre>'.print_r( $_REQUEST, true ).'</pre>';
+
+        $input = array();
 		$input['idea_id'] 		= $idea_id;
 		$input['user_id'] 		= (!$anonymous)? $this->user->id : 0 ;
 		$input['forum_id'] 		= $forum_id;
 		$input['comment'] 		= $comment;
-		$input['createdate'] 	= Handy::getDateTime();
-//		echo '<pre>'.print_r($input, true).'</pre>';exit();
-		$model = $this->getModel('comment');
+        $date = new JDate();
+		$input['createdate'] 	= $date->toFormat();
+
+        $model = $this->getModel('comment');
 		$model->setIdeaId($idea_id);
 		$model->addComment($input);
 		
