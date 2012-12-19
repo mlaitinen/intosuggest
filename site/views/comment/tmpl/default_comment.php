@@ -50,9 +50,17 @@ if ( !$obIsJ15 ) {
 		if (agree){
 			 if (controller == 'comment'){
 				var idea_id = document.getElementById('idea_id').value;
-				var url="index.php?option=com_intosuggest&controller=comment&format=raw&task=delComment&id="+id+"&idea_id="+idea_id;
+				var url="index.php";
 				<?php echo $str_new_ajax; ?>
 					method:'get',
+                    data: {
+                        option: 'com_intosuggest',
+                        controller: 'comment',
+                        format: 'raw',
+                        task: 'delComment',
+                        id: id,
+                        idea_id: idea_id
+                    },
 					onComplete:function(result){
 						//loadPage('index.php?option=com_intosuggest&controller=activity&format=raw&task=displayComments&user_id='+getUserId()+'&page=1')
 						document.getElementById('contentComment').innerHTML = result;
@@ -64,9 +72,16 @@ if ( !$obIsJ15 ) {
 				<?php echo $str_ajax_request; ?>
 			 } else if (controller == 'activity'){
 				//get list comment of userid
-				var url = "index.php?option=com_intosuggest&controller=comment&format=raw&task=UdelComment&id="+id;
+				var url = "index.php";
 				<?php echo $str_new_ajax; ?>
 						method:'get',
+                        data: {
+                            option: 'com_intosuggest',
+                            controller: 'comment',
+                            format: 'raw',
+                            task: 'UdelComment',
+                            id: id
+                        },
 						onComplete:function(result){
 							loadPage('index.php?option=com_intosuggest&controller=activity&format=raw&task=displayComments&user_id='+getUserId()+'&page=1')
 							//document.getElementById('list_comment').removeChild(document.getElementById('comment_'+id))
@@ -98,9 +113,19 @@ if ( !$obIsJ15 ) {
 			var idea_id  	= document.getElementById('idea_id').value;
 			var forum_id 	= document.getElementById('forum_id').value;
 			var anonymous 	= (document.getElementById('anonymous').checked)?1:0;
-			var url="index.php?option=com_intosuggest&controller=comment&format=raw&task=addComment&idea_id="+idea_id+"&comment="+comment+"&forum_id="+forum_id+"&anonymous="+anonymous;
+			var url="index.php";
 			<?php echo $str_new_ajax; ?>
-				medthod : 'get',
+				method : 'post',
+                data: {
+                    option: 'com_intosuggest',
+                    controller: 'comment',
+                    format: 'raw',
+                    task: 'addComment',
+                    idea_id: idea_id,
+                    comment: comment,
+                    forum_id: forum_id,
+                    anonymous: anonymous
+                },
 				onComplete : function( result ) {
 					try {
 						var jsresult;

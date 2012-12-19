@@ -81,10 +81,11 @@ if ( !$obIsJ15 ) {
 //		return (((status >= 200) && (status < 300))||(status==404));
 //	}	
 //});
-function sendData(tgUrl) {	
+function sendData(tgUrl, data) {	
 	var url = tgUrl;	
 	<?php echo $str_new_ajax; ?>
 		method: 'post',
+        data: data,
 		onComplete: function(txt){
 			try {
 				var jsresult;
@@ -103,12 +104,20 @@ function addIdea(){
 	var forum_id = window.parent.getForumId();
 	var title = document.NewIdea.title.value;
 	var fulltext = document.NewIdea.fulltext.value;	
-	var url = "index.php?option=com_intosuggest&controller=idea&task=addIdea&title="+title+"&content="+fulltext+"&forum_id="+forum_id;		
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'addIdea',
+        title: title,
+        content: fulltext,
+        forum_id: forum_id
+    };
 	if(title=='') {
 		alert('<?php echo JText::_("Enter your idea before save.")?>');
 		return false;
-		}
-	sendData(url);	
+    }
+	sendData(url, data);
 }
 
 </script>

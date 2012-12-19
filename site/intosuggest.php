@@ -62,18 +62,20 @@ if ($obIsJ15)
     // clear the original scripts
     $headerstuff['scripts'] = array();
     // delete joomla version of mootools
-    foreach ($scripts as $url => $type)
-    {
-        if (strpos($url, 'js/mootools.js') === false && strpos($url, 'js/caption.js') === false)
+    if($scripts != null) {
+        foreach ($scripts as $url => $type)
         {
-            $headerstuff['scripts'][$url] = $type;
+            if (strpos($url, 'js/mootools.js') === false && strpos($url, 'js/caption.js') === false)
+            {
+                $headerstuff['scripts'][$url] = $type;
+            }
         }
+        
+        // set the new head data
+        $doc->setHeadData($headerstuff);
     }
-
-    // set the new head data
-    $doc->setHeadData($headerstuff);
+    
 }
-
 ?>
 
 

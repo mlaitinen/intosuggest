@@ -63,10 +63,10 @@ function onout(id) {
 }
 
 ///
-function sendData(tgUrl,id_form) {
-	var url = tgUrl;
-	var req = new Request({
-		'url':url,
+function sendData(tgUrl,id_form, data) {
+	new Request({
+		url: tgUrl,
+        data: data,
 		method: 'post',
 		onComplete: function(txt){							
 			//closeForm(id_form);							
@@ -159,8 +159,16 @@ function btnBackTopIdeas_click(forumId) {
 }
 
 function lstVote_change(vote,idea_id) {			
-	var url = "index.php?option=com_intosuggest&controller=idea&task=updateVote&id="+idea_id+"&vote="+vote+"&format=raw";
-	sendData(url,"");
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'updateVote',
+        id: idea_id,
+        vote: vote,
+        format: 'raw'
+    };
+	sendData(url, "", data);
 }
 
 function refesh(id,response){
@@ -207,8 +215,15 @@ function addRepose(id) {
 function addResponse(sid) {
 	var id = sid.substring(3);
 	var response = document.adminForm.Response.value;
-	var url = "index.php?option=com_intosuggest&controller=idea&task=addResponse&id="+id+"&response="+response;
-	sendData(url,'');
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'addResponse',
+        id: id,
+        response: response
+    };
+	sendData(url, '', data);
 	//refreshIdea(id);
 	refesh(id,response);
 	var cache = "cache_rps_content";
@@ -222,30 +237,11 @@ function ondel(id) {
 		var url = "index.php?option=com_intosuggest&controller=idea&format=raw&task=delIdea&id="+id;
 		if(typeof(getUserId) != 'undefined')
 			url += "&user_id="+getUserId();
-		var req = new Request({
+		new Request({
 			'url': url,
 			method:'post',
 			onComplete:function(txt){
-				if(document.current_tab)
-				{
-					clickTab(document.current_tab)
-				}
-				else
-				{
-					var a = txt.split("-");
-					var idea = document.getElementById('count_idea');
-					var comment = document.getElementById('count_comment');
-					if(idea)
-					{
-						idea.innerHTML = a[0];
-					}
-					if(comment)
-					{
-						comment.innerHTML = a[1];
-					}
-					document.getElementById('list_comment').innerHTML = '<div style="margin:0px 1px 0px 1px;text-align:center;border:1px dotted #999999;background:#ffffcc;">No comment for this idea</div>';
-					loadPage('index.php?option=com_intosuggest&controller=activity&format=raw&task=displayIdeas&user_id='+getUserId()+'&page=1')
-				}
+				document.location.reload(true);
 			}
 		}).send();
 	}		
@@ -492,8 +488,15 @@ function sendVote(idea, votes){
 }
 
 function updateVote(votes) {
-	var url = "index.php?option=com_intosuggest&controller=idea&task=updateVote&id="+idea_id+"&vote="+votes;
-	sendData(url,'VoteForm');
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'updateVote',
+        id: idea_id,
+        vote: votes
+    };
+	sendData(url, 'VoteForm', data);
 	refreshIdea(idea_id);		
 	var v_id = "voteB" + idea_id;
 	document.getElementById(v_id).innerHTML = votes;

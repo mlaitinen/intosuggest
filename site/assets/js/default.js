@@ -61,11 +61,12 @@ function onout(id) {
 }
 
 ///
-function sendData(tgUrl,id_form) {
+function sendData(tgUrl,id_form,data) {
 	var url = tgUrl;
 	if( MooTools.version != '1.1' ) {
 		var req = new Request({'url':url,
 			method: 'post',
+            data: data,
 			onComplete: function(txt){
 				//closeForm(id_form);
 			}
@@ -73,6 +74,7 @@ function sendData(tgUrl,id_form) {
 	} else {
 		var req = new Ajax(url,{
 			method: 'post',
+            data: data,
 			onComplete: function(txt){
 				//closeForm(id_form);
 			}
@@ -116,7 +118,7 @@ function openForm(id_form){
 }
 
 function refreshIdea(id) {	
-	var url = 'index.php?option=com_intosuggest&controller=idea&task=getIdea&id='+id+'&format=raw';
+	var url = 'index.php';
 	var title_id = 'title'+id;
 	var idea_id = 'idea'+id;
 	var status_id = 'status'+id;
@@ -124,7 +126,14 @@ function refreshIdea(id) {
 	var vote_id = 'vote'+id; 
 	var request = new Json.Remote(
 		url,{			
-		onComplete: function(jsonObj) {				
+		data: {
+            option: 'com_intosuggest',
+            controller: 'idea',
+            task: 'getIdea',
+            id: id,
+            format: 'raw'
+        },
+        onComplete: function(jsonObj) {				
 			document.getElementById(title_id).innerHTML = jsonObj.idea[0].title;
 			document.getElementById(idea_id).innerHTML = jsonObj.idea[0].fulltext;
 			document.getElementById(status_id).innerHTML = jsonObj.idea[0].status;	
@@ -134,13 +143,17 @@ function refreshIdea(id) {
 }
 
 function btnBackTopIdeas_click(forumId) {	
-	var urlB = "index.php?option=com_intosuggest&forumId="+forumId
-	changepage()
+	var urlB = "index.php";
+	changepage();
 	//window.location = urlB;
-	return
+	return;
 	//alert(urlB)
 	var req = new Ajax(urlB,{
 		method: 'post',
+        data: {
+            option: 'com_intosuggest',
+            forumId: forumId
+        },
 		onComplete: function(txt){
 			document.getElementById('tab').innerHTML = txt;			
 			var url = "index.php?option=com_intosuggest&controller=idea&task=topIdea&forum="+forumId+"&format=raw";			
@@ -153,8 +166,16 @@ function btnBackTopIdeas_click(forumId) {
 }
 
 function lstVote_change(vote,idea_id) {			
-	var url = "index.php?option=com_intosuggest&controller=idea&task=updateVote&id="+idea_id+"&vote="+vote+"&format=raw";
-	sendData(url,"");
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'updateVote',
+        id: idea_id,
+        vote: vote,
+        format: 'raw'
+    };
+	sendData(url, "", data);
 }
 
 function refesh(id,response){
@@ -201,8 +222,15 @@ function addRepose(id) {
 function addResponse(sid) {	
 	var id = sid.substring(3);				
 	var response = document.adminForm.Response.value;	
-	var url = "index.php?option=com_intosuggest&controller=idea&task=addResponse&id="+id+"&response="+response;		
-	sendData(url,'');
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'addResponse',
+        id: id,
+        response: response
+    };
+	sendData(url, '', data);
 	//refreshIdea(id);
 	refesh(id,response);
 	var cache = "cache_rps_content";
@@ -213,59 +241,30 @@ function ondel(id) {
 	var agress = confirm(getConfirmDeleteIdeaText());
 	if (agress) {
 		
-		var url = "index.php?option=com_intosuggest&controller=idea&format=raw&task=delIdea&id="+id;
+		var url = "index.php";
+        var data = {
+            option: 'com_intosuggest',
+            controller: 'idea',
+            format: 'raw',
+            task: 'delIdea',
+            id: id
+        };
 		if(typeof(getUserId) != 'undefined')
-			url += "&user_id="+getUserId();
+            data.user_id = getUserId();
 		if( MooTools.version != '1.1' ) {
 			var req = new Request({'url':url,
 				method:'post',
+                data: data,
 				onComplete:function(txt){
-					if(document.current_tab)
-					{
-						clickTab(document.current_tab)
-					}
-					else
-					{
-						var a = txt.split("-");
-						var idea = document.getElementById('count_idea');
-						var comment = document.getElementById('count_comment');
-						if(idea)
-						{
-							idea.innerHTML = a[0];
-						}
-						if(comment)
-						{
-							comment.innerHTML = a[1];
-						}
-						document.getElementById('list_comment').innerHTML = '<div style="margin:0px 1px 0px 1px;text-align:center;border:1px dotted #999999;background:#ffffcc;">No comment for this idea</div>';
-						loadPage('index.php?option=com_intosuggest&controller=activity&format=raw&task=displayIdeas&user_id='+getUserId()+'&page=1')
-					}
+					document.location.reload(true);
 				}
 			}).send();
 		} else {
 			var req = new Ajax(url, {
 				method:'post',
+                data: data,
 				onComplete:function(txt){
-					if(document.current_tab)
-					{
-						clickTab(document.current_tab)
-					}
-					else
-					{
-						var a = txt.split("-");
-						var idea = document.getElementById('count_idea');
-						var comment = document.getElementById('count_comment');
-						if(idea)
-						{
-							idea.innerHTML = a[0];
-						}
-						if(comment)
-						{
-							comment.innerHTML = a[1];
-						}
-						document.getElementById('list_comment').innerHTML = '<div style="margin:0px 1px 0px 1px;text-align:center;border:1px dotted #999999;background:#ffffcc;">No comment for this idea</div>';
-						loadPage('index.php?option=com_intosuggest&controller=activity&format=raw&task=displayIdeas&user_id='+getUserId()+'&page=1')
-					}
+					document.location.reload(true);
 				}
 			}).request();
 		}
@@ -327,16 +326,22 @@ function msgbox(txt)
 function btnSearch_click() {
 	var forum_id = getForumId()
 	var key = document.getElementById('key_search').value;
-	var auto_comp_url ="index.php?option=com_intosuggest&controller=idea&task=autoComplete&forum="+forum_id+"&key="+key+"&format=raw";
 	var filter = key.trim();
 	filter = filter.length;
 	if (filter > 0)
 		key = key.trim();
 	if (key == "") return;
-	url = "index.php?option=com_intosuggest&controller=idea&task=search&forum="+forum_id+"&key="+key+"&format=raw";	 		
 	var tab = document.getElementById('tab'); tab.innerHTNL = '';
-	var req = new Ajax(url,{
+	new Ajax('index.php',{
 		method: 'post',
+        data: {
+            option: 'com_intosuggest',
+            controller: 'idea',
+            task: 'search',
+            forum: forum_id,
+            key: key,
+            format: 'raw'
+        },
 		onComplete: function(txt){
 			tab.innerHTML = txt;
 		}
@@ -512,8 +517,15 @@ function sendVote(idea, votes){
 }
 
 function updateVote(votes) {
-	var url = "index.php?option=com_intosuggest&controller=idea&task=updateVote&id="+idea_id+"&vote="+votes;
-	sendData(url,'VoteForm');
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'updateVote',
+        id: idea_id,
+        vote: votes
+    };
+	sendData(url, 'VoteForm', data);
 	refreshIdea(idea_id);		
 	var v_id = "voteB" + idea_id;
 	document.getElementById(v_id).innerHTML = votes;
@@ -527,9 +539,17 @@ function delComment(id){
 	if (agree){
 		 if (controller == 'comment'){
 		 	var idea_id = document.getElementById('idea_id').value;
-			var url="index.php?option=com_intosuggest&controller=comment&format=raw&task=delComment&id="+id+"&idea_id="+idea_id;
-			var req = new Ajax(url,{
+			var url="index.php";
+			new Ajax(url,{
 				method:'get',
+                data: {
+                    option: 'com_intosuggest',
+                    controller: 'comment',
+                    format: 'raw',
+                    task: 'delComment',
+                    id: id,
+                    idea_id: idea_id
+                },
 				onComplete:function(result){
 					document.getElementById('contentComment').innerHTML = result;
 					
@@ -537,10 +557,16 @@ function delComment(id){
 			}).request();
 		 }else if (controller == 'activity'){
 			 //get list comment of userid
-			var url = "index.php?option=com_intosuggest&controller=comment&format=raw&task=UdelComment&id="+id;
 			
-				var req = new Ajax( url, {
+				new Ajax('index.php', {
 					method:'get',
+                    data: {
+                        option: 'com_intosuggest',
+                        controller: 'comment',
+                        format: 'raw',
+                        task: 'UdelComment',
+                        id: id
+                    },
 					onComplete:function(result){
 						loadPage('index.php?option=com_intosuggest&controller=activity&format=raw&task=displayComments&user_id='+getUserId()+'&page=1')
 						//document.getElementById('list_comment').removeChild(document.getElementById('comment_'+id))
@@ -568,16 +594,26 @@ function resetComment() {
 	document.getElementById('comment').focus();
 }
 function addComment() {
+    // Not in use I guess? There's another addComment function in views/comment/tmpl/default_comment.php (sigh.)
 	var comment  = document.getElementById('comment').value;
 	if (comment == ""){
 		alert(getRequireCommentText());
 	}else{
 		var idea_id  = document.getElementById('idea_id').value;
 		var forum_id = document.getElementById('forum_id').value;
-		
-		var url="index.php?option=com_intosuggest&controller=comment&format=raw&task=addComment&idea_id="+idea_id+"&comment="+comment+"&forum_id="+forum_id;
-		var req = new Ajax( url,{
-			medthod:'get',
+
+		new Ajax(url, {
+            url: 'index.php',
+            data: {
+                option: 'com_intosuggest',
+                controller: 'comment',
+                format: 'raw',
+                task: 'addComment',
+                idea_id: idea_id,
+                comment: comment,
+                forum_id: forum_id
+            },
+			method:'post',
 			onComplete:function(result){
 				document.getElementById('contentComment').innerHTML = result;
 				document.getElementById('comment').value = "";
