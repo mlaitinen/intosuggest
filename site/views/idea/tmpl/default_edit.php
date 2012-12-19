@@ -82,13 +82,14 @@ if ( !$obIsJ15 ) {
 //		return (((status >= 200) && (status < 300))||(status==404));
 //	}
 //});
-function sendData(tgUrl) {	
+function sendData(tgUrl, data) {	
 	var url = tgUrl;	
 //	var log = $('log_res').empty().addClass('ajax-loading');
 	var log = $('log_res').addClass('ajax-loading');
 	
 	<?php echo $str_new_ajax; ?>
 		method: 'post',
+        data: data,
 		onComplete: function(txt){
 			log.removeClass('ajax-loading');
 			try {
@@ -113,12 +114,20 @@ function updateIdea() {
 	var title = document.EditIdea.title.value;
 	var fulltext = document.EditIdea.fulltext.value;
 	var id = document.EditIdea.id.value;
-	var url = "index.php?option=com_intosuggest&controller=idea&task=updateIdea&id="+id+"&title="+title+"&content="+fulltext;		
+	var url = "index.php";
+    var data = {
+        option: 'com_intosuggest',
+        controller: 'idea',
+        task: 'updateIdea',
+        id: id,
+        title: title,
+        content: fulltext
+    };
 	if(title=='') {
 		alert('<?php echo JText::_("Enter your idea before save.")?>');
 			return false;
 		}
-	sendData(url);	
+	sendData(url, data);	
 }
 
 </script>
