@@ -16,7 +16,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	<div style="margin-right:0px 3px;">
 		<textarea rows="5" style="width:100%;border:1px dotted #999999;" name="comment" id="comment"></textarea>						
 	</div>
-	<div><br/><label><input id="anonymous" type="checkbox" name="anonymous" value="1" /> &nbsp; <?php echo JText::_('OBSG_COMMENT_AS_ANONYMOUS'); ?></label></div>
+	<input id="anonymous" type="hidden" name="anonymous" value="0" />
 	<div style="margin:3px 0px;">
 		<input type="button" value="<?php echo JText::_("Save")?>"  onclick="addComment();" />
 			&nbsp;
