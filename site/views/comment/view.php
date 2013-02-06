@@ -181,8 +181,6 @@ class ViewComment extends JView {
 		$user = $this->getUser($idea->user_id); ;	
 		switch ($box){
 			case 'TITLE':
-//				echo '<a href="'.JRoute::_('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id).'" id="title'.$idea->id.'">'.$idea->title.'</a>';
-//				echo '<h2><a href="'.JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id)).'" id="title'.$idea->id.'">'.$idea->title.'</a></h2>';
 ?>
 				<div class="idea_title">
 					<h3><a href="<?php echo JRoute::_(IntoSuggestHelperRouter::addItemId('index.php?option=com_intosuggest&controller=comment&idea_id='.$idea->id)); ?>" id="title<?php echo $idea->id; ?>"><?php echo $idea->title; ?></a></h3>
