@@ -408,7 +408,7 @@ class ViewActivity extends JView {
 					
 				<?php 
 				if ($can_response) {?>
-					<a href="javascript:addRepose('rps<?php echo $idea->id; ?>')" class="rs_add"><?php echo JText::_("ADD RESPONSE")?></a> 
+					<a href="javascript:addRepose('rps<?php echo $idea->id; ?>')" class="rs_add"><?php echo JText::_("ADD_RESPONSE")?></a> 
 				<?php }?>
 				
 					
