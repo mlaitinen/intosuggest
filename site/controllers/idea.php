@@ -514,6 +514,7 @@ class ControllerIdea extends JController {
 			$respon->remainpoint 		= $limitpoint - $newvotedpoint;
 			$respon->usevote 			= $vote;
 			$respon->limitpoint 		= $limitpoint;
+            $respon->forum              = $forum_id;
 			$respon->error 				= '0';
 			$respon->error_msg 			= '';
 			echo json_encode ( $respon );

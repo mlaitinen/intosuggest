@@ -11,7 +11,7 @@ $user_vote 	= (isset($rs->vote)) ? $rs->vote : $rs;
 $can_vote 	= ( ($this->output->permission->vote_idea_a == 1) || 
 				(($this->output->permission->vote_idea_o == 1) &&
 				 ($this->output->user->id == $idea->user_id)) ) ;
-$script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea->id."'); return false;" : "return false;";
+$script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea->id."', $idea->forum_id); return false;" : "return false;";
 ?>
 <div class="box_vote_blue">
 	<div class="sum_vote">
@@ -30,13 +30,13 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 	<div id="<?php echo 'panel_btn_vote_'.$idea->id;; ?>" class="panel_votes" class="display_none">
 		<div class="panel_bnt_vote_title"><?php echo JText::_('Vote'); ?></div>
 		<div class="panel_bnt_vote_body">
-			<div class="votes_remaining_message"><?php echo JText::sprintf('YOU_HAVE_X_VOTES_REMAINING', $this->remainingpoint); ?></div>
+			<div class="votes_remaining_message"><?php echo JText::sprintf('YOU_HAVE_X_VOTES_REMAINING', "<span class=\"votes_remaining_num_$idea->forum_id\">".$this->remainingpoints[$idea->forum_id]."</span>"); ?></div>
 			<div class="wraper_list_vote_point">
 				<ul class="list_vote_point" id="list_vote_point_<?php echo $idea->id; ?>">
 				<?php 
 					foreach ($listVote as $objVote) { 
 						$script = ($can_vote)? 'update_vote_uservoice( '.$idea->id.', '.$objVote->vote_value.'); return false;': 'return false;';
-						$disable_point 	= ( ( $user_vote == $objVote->vote_value ) || ($this->remainingpoint < $objVote->vote_value) ) ? 'disable_point':'';
+						$disable_point 	= ( ( $user_vote == $objVote->vote_value ) || ($this->remainingpoints[$idea->forum_id] < $objVote->vote_value) ) ? 'disable_point':'';
 						$hidden_point 	= ( !$user_vote && !$objVote->vote_value ) ? 'hidden_point':''; 
 				?>
 					<li id="<?php echo 'list_vote_point_'.$idea->id.'_'.$objVote->vote_value;?>" <?php echo ($disable_point || $hidden_point)?' class="'.$disable_point.' '.$hidden_point.'" ':''; ?>>
@@ -52,5 +52,8 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 </div>
 
 <script type="text/javascript">
-    var remainingVoteCount = <?php echo $this->remainingpoint; ?>;
+    var remainingVoteCount = [];
+    <?php foreach ($this->remainingpoints as $forum => $remainingpoint) : ?>
+    remainingVoteCount[<?php echo $forum; ?>] = <?php echo $remainingpoint; ?>;
+    <?php endforeach; ?>
 </script>

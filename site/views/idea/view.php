@@ -27,6 +27,18 @@ class ViewIdea extends JView {
 		$idea_title = JRequest::getString("idea_title");
 		
 		$datetime_format = $model->getDatetimeConfig();
+        
+        $user = &JFactory::getUser();
+		$user_id = $user->id;
+        
+        $remainingpoints = array();
+        $forums = Forum::getAllForum();
+        foreach ($forums as $forum) {
+            $rempo = Forum::getRemainingPoint($forum->id, $user_id);
+            $remainingpoints[$forum->id] = $rempo;
+        }
+        $this->assignRef( 'remainingpoints', $remainingpoints );
+        
 		$this->assignRef("idea_title", $idea_title);
 		$this->assignRef('ideas',$ideas);
 		$this->assignRef('forum_id',$forum_id);

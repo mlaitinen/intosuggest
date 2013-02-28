@@ -68,6 +68,13 @@ class ViewActivity extends JView {
 		else $pageComment = "";
 		
 		// assign some variable
+        $remainingpoints = array();
+        $forums = Forum::getAllForum();
+        foreach ($forums as $forum) {
+            $rempo = Forum::getRemainingPoint($forum->id, $model->user_id);
+            $remainingpoints[$forum->id] = $rempo;
+        }
+        $this->assignRef( 'remainingpoints', $remainingpoints );
 		
 		$this->assignRef("pagination", $pagination); // pagination ideas
 				

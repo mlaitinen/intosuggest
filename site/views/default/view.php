@@ -67,15 +67,21 @@ class ViewDefault extends JView {
 		
 		$user = &JFactory::getUser();
 		$user_id = $user->id;
-		$remainingpoint = Forum::getRemainingPoint($forum_id, $user_id);
-
+        
+        $remainingpoints = array();
+        $forums = Forum::getAllForum();
+        foreach ($forums as $forum) {
+            $rempo = Forum::getRemainingPoint($forum->id, $user_id);
+            $remainingpoints[$forum->id] = $rempo;
+        }
+        $this->assignRef( 'remainingpoints', $remainingpoints );
+        
         $search = 0;
         $this->assignRef( 'total', $total);
         $this->assignRef( 'ideas',	$ideas);
         $this->assignRef( 'idea_output', $idea_output );	
         $this->assignRef( 'search',$search);	
         $this->assignRef( 'pagination', $pagination);
-		$this->assignRef( 'remainingpoint', $remainingpoint );
 		$this->assignRef( 'forum_id', $forum_id );
 		$this->assignRef( 'status', $status );
 		$this->assignRef( 'output', $output );

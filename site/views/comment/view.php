@@ -72,9 +72,14 @@ class ViewComment extends JView {
 		# set Remaining point
 		$user = &JFactory::getUser();
 		$user_id = $user->id;
-		$remainingpoint = Forum::getRemainingPoint($forum_id, $user_id);
-
-		$this->assignRef( 'remainingpoint', $remainingpoint );
+		
+        $remainingpoints = array();
+        $forums = Forum::getAllForum();
+        foreach ($forums as $forum) {
+            $rempo = Forum::getRemainingPoint($forum->id, $user_id);
+            $remainingpoints[$forum->id] = $rempo;
+        }
+        $this->assignRef( 'remainingpoints', $remainingpoints );
 		$this->assignRef("pagination", $pagination);
 		$this->assignRef("pageComment", $pageComment);
 		$this->assignRef('search',$search);
