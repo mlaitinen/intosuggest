@@ -44,7 +44,7 @@ function displayPanelVote( btnvote_id ){
 	var usevote 	= parseInt( $( 'user_vote_' + idea_id ).innerHTML );
 	var totalpoint 	= parseInt( $( 'sum_vote_' + idea_id ).innerHTML );
 
-	var remain = getRemainingVoteCount();
+	var remain = remainingVoteCount; // getRemainingVoteCount();
 	var prefix = 'list_vote_point_'+idea_id+'_';
 	var prefix_len = prefix.length;
 	Array.each( $$( '#list_vote_point_'+idea_id+' li' ), function ( el, index ) {
@@ -92,7 +92,8 @@ function update_vote_uservoice(idea_id, vote_value) {
 				Array.each($$( '.votes_remaining_num' ), function(el, index){
 					el.innerHTML = respon.remainpoint;
 				});
-
+                
+                remainingVoteCount = respon.remainpoint;
 			}
 			$('wraper_panel_btn_vote_'+idea_id).setStyle('display', 'none');
 		}

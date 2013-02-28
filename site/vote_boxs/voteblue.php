@@ -52,7 +52,5 @@ $script_display_panel_vote = ( $can_vote ) ? "displayPanelVote('btn_vote_".$idea
 </div>
 
 <script type="text/javascript">
-    function getRemainingVoteCount() {
-        return <?php echo $voteCount; ?>;
-    }
+    var remainingVoteCount = <?php echo $this->remainingpoint; ?>;
 </script>
