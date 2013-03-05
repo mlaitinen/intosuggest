@@ -64,7 +64,7 @@ class ModelDefault extends JModel {
 		$temp->addProperty('forum',$forum);
 		$temp->addProperty('permission',$permission);
 		$temp->addProperty('config',$config);
-
+        $temp->addProperty('user', $user);
 		return $temp->getOutput();
 	}
 

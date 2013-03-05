@@ -42,7 +42,7 @@ class ViewDefault extends JView {
 		
 		$model_idea = &$this->getModel('idea');
 		$limit = &JRequest::getVar('limit', 5);
-		$limitstart = &JRequest::getVar('start', 0);
+		$limitstart = &JRequest::getVar('limitstart', 0);
 		$model_idea->setLimitstart($limitstart);
 		$model_idea->setLimit($limit);
 		$tab = &JRequest::getVar( 'tab', 0);
