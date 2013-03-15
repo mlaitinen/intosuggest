@@ -96,7 +96,7 @@ class ModelComment extends JModel {
 			SELECT *
 			FROM `#__intosuggest_comment`
 			WHERE `user_id` = $user_id
-			ORDER BY `createdate` DESC
+			ORDER BY `createdate` ASC
 		;";		
 		return DBase::getObjectList($query);
 	}
@@ -106,7 +106,7 @@ class ModelComment extends JModel {
 			SELECT *
 			FROM `#__intosuggest_comment`
 			WHERE `idea_id` = $this->idea_id
-			ORDER BY `createdate` DESC
+			ORDER BY `createdate` ASC
 		;";		
 		return DBase::getObjectList($query);
 	}
@@ -138,7 +138,7 @@ class ModelComment extends JModel {
 			SELECT *
 			FROM `#__intosuggest_comment`
 			WHERE `idea_id` = $this->idea_id
-			ORDER BY `createdate` DESC
+			ORDER BY `createdate` ASC
 			LIMIT $limitStart, $limit
 		;";		
 		return DBase::getObjectList($query);
