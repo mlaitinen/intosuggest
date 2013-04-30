@@ -62,37 +62,19 @@ final class Forum {
 		DBase::querySQL($query);
 	}
 	public static function getTabForumById($_forum_id) {
-		$query = "SELECT st.id, st.title FROM #__intosuggest_status AS st".
-				 " INNER JOIN #__intosuggest_tab AS tab".
-				 " ON st.id = tab.status_id".
-				 " WHERE tab.forum_id = ".$_forum_id.
-                 " ORDER BY st.id ASC ";
-		//echo $query;
 		
-		/* $query = "
-			SELECT *
-			FROM `#__intosuggest_tab`
-			WHERE `forum_id` = $_forum_id
-		;";*/
+        $query = "SELECT st.id, st.title, COUNT(i.id) AS ideacount FROM #__intosuggest_status AS st ".
+				"INNER JOIN #__intosuggest_tab AS tab ON st.id = tab.status_id ".
+                "LEFT JOIN #__intosuggest_idea AS i ON i.status_id = st.id AND i.forum_id = tab.forum_id AND i.published = 1 ".
+				"WHERE tab.forum_id = ".$_forum_id. " ".
+                "GROUP BY st.id, st.title ".
+                "UNION "  .
+                "SELECT 0 as id, 'STATUS_NO_STATUS' as title, COUNT(id) AS ideacount FROM #__intosuggest_idea ".
+                "WHERE status_id = 0 AND forum_id = $_forum_id AND published = 1 ".
+                "ORDER BY id ASC";
+        
 		$tab =  DBase::getObjectList($query);
-		/*$status = Handy::getStatus();		
-		$rs = null;
-		foreach ($status as $stt) {
-			if ($stt->parent_id != -1) {
-				$temp['id'] = $stt->id;
-				$temp['title'] = $stt->title;
-				$temp['published'] = 0;
-				if ($tab !== NULL) {
-					foreach ($tab as $t) {
-						if ($t->status_id == $stt->id) {
-							$temp['published'] = 1;
-							break;
-						}
-					}
-				}
-				$rs[] = $temp;
-			}
-		}*/
+
 		return $tab;
 	}
 	

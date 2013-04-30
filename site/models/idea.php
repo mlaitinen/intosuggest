@@ -19,8 +19,8 @@ require_once(JPATH_COMPONENT.DS."helper".DS."permission.php");
 require_once(JPATH_COMPONENT.DS."helper".DS."config.php");
 
 class Modelidea extends JModel {
-	private $user;
-	private $id = 1;
+
+    private $id = 1;
 	private $key = NULL;
 	private $idea_id = NULL;
 	private $forum_id;
@@ -30,16 +30,6 @@ class Modelidea extends JModel {
 	public $pageNav = NULl;
 	public $total = 0;
 	public $gconfigs = null;
-	
-	function __construct() {
-		parent::__construct();
-		$this->setUser();		
-	}
-	public function setUser() {
-		$this->user = JFactory::getUser();
-		//return Handy::getUser($_user_id);		
-		//if (strpos($this->user->usertype,"Guest") !== false) $this->user->id = 0;
-	}
 	
 	public function setLimitstart($limitStart){
 		$this->limitstart = $limitStart;
@@ -189,7 +179,7 @@ class Modelidea extends JModel {
 	}
 	
 	public function getUserVoteIdea($_idea_id){
-		return Idea::getUserVoteIdeaById($_idea_id,$this->user->id);
+		return Idea::getUserVoteIdeaById($_idea_id, JFactory::getUser()->get('id'));
 	}
 	
 	public function getOutput() {
@@ -212,11 +202,14 @@ class Modelidea extends JModel {
 		$_input['title'] =Config::fixBadWord($_input['title']);
 		$_input['content'] = Config::fixBadWord($_input['content']);
 		
+        /* @var $user JUser */
+        $user =& JFactory::getUser();
+        
 		$query = "
 			INSERT INTO #__intosuggest_idea(`title`,`content`,`user_id`,`createdate`,`forum_id`)
 			VALUES (\"".$_input['title']."\",
 					\"".$_input['content']."\",
-					".$_input['user_id'].",
+					".$user->get(('id')).",
 					\"".$_input['createdate']."\",
 					".$_input['forum_id'].")
 		;";
@@ -317,7 +310,7 @@ class Modelidea extends JModel {
 				INSERT INTO #__intosuggest_vote(`idea_id`,`user_id`,`vote`) 
 				VALUES (".
 					$_input['id'].",".
-					$this->user->id.",".
+					JFactory::getUser()->get('id').",".
 					$_input['vote'].")
 				;";		
 			
@@ -329,7 +322,7 @@ class Modelidea extends JModel {
 				UPDATE  `#__intosuggest_vote`
 				SET `vote` = ".$_input['vote']." 
 				WHERE `idea_id` = ".$_input['id']."
-					AND `user_id` = ".$this->user->id."
+					AND `user_id` = ".JFactory::getUser()->get('id')."
 				;";		
 			DBase::querySQL($query);			
 		}
@@ -361,7 +354,7 @@ class Modelidea extends JModel {
 			SELECT SUM(`vote`) as vote
 			FROM `#__intosuggest_vote`
 			WHERE `idea_id` = ".$_input['id']."
-				AND `user_id` = ".$this->user->id."
+				AND `user_id` = ". JFactory::getUser()->get('id')."
 		;";
 		$vote = DBase::getObject($query); 
 		if ($vote->vote == NULL) {

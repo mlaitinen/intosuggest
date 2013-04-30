@@ -145,7 +145,7 @@ class ModelComment extends JModel {
 	}
 
 	public function getUserVoteIdea($_idea_id){
-		return Idea::getUserVoteIdeaById($_idea_id,$this->user->id);
+		return Idea::getUserVoteIdeaById($_idea_id, JFactory::getUser()->get('id'));
 	}
 
 	public function getUser($_user_id) {

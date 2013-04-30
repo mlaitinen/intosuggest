@@ -15,12 +15,8 @@ jimport('joomla.application.component.controller');
 jimport('joomla.utilities.date');
 
 class ControllerComment extends JController {
-	private $user;
-	function __construct() {
-		parent::__construct();
-		$this->setUser();
-	}
-	function pagingComment()
+
+    function pagingComment()
 	{
 		
 		$model = &$this->getModel('comment');
@@ -112,11 +108,6 @@ class ControllerComment extends JController {
 		
 	}
 	
-	public function setUser() {
-		$this->user = &JFactory::getUser();
-		if ($this->user->usertype == "Guest") $this->user->id = 0;
-	}
-	
 	public function addComment() {
 		$idea_id = &JRequest::getVar('idea_id');
 		$comment = &JRequest::getVar('comment');
@@ -134,7 +125,7 @@ class ControllerComment extends JController {
 
         $input = array();
 		$input['idea_id'] 		= $idea_id;
-		$input['user_id'] 		= (!$anonymous)? $this->user->id : 0 ;
+		$input['user_id'] 		= (!$anonymous)? JFactory::getUser()->get('id') : 0 ;
 		$input['forum_id'] 		= $forum_id;
 		$input['comment'] 		= $comment;
         $date = new JDate();

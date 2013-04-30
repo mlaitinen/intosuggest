@@ -16,11 +16,6 @@ jimport('joomla.utilities.date');
 require_once (JPATH_COMPONENT.DS.'helper'.DS.'forum.php');
 
 class ControllerIdea extends JController {
-	private $user;
-	function __construct() {
-		parent::__construct();
-		$this->setUser();
-	}
 	
 	function display() {
 		$forum_id = &JRequest::getVar('forum');
@@ -29,7 +24,7 @@ class ControllerIdea extends JController {
 			$forum_default = Forum::getForumDefault();
 			$forum_id = &JRequest::getVar('id',$forum_default->id);
 		}
-		$user_id = &JRequest::getVar('user_id');
+		$user_id = JFactory::getUser()->get('id');
 		redirectIfIsNotInt($user_id);
 		$model = &$this->getModel('idea');
 		$model->setForumId($forum_id);
@@ -74,7 +69,7 @@ class ControllerIdea extends JController {
 		$input['title'] = $title;
 		$input['forum_id'] = $forum_id;
 		$input['content'] = $content;
-		$input['user_id'] = $this->user->id;
+		$input['user_id'] = JFactory::getUser()->get('id');
         $date = new JDate();
 		$input['createdate'] = $date->toFormat();
 		
@@ -83,15 +78,6 @@ class ControllerIdea extends JController {
 		$model->addIdea($input);
 	}
 	
-	public function setUser() {
-		$this->user = JFactory::getUser();	
-		/*		
-		if (strpos($this->user->usertype,"Guest") !== false) {		
-			$this->user->id = 0;
-		}	
-		*/
-	}
-
 	function getIdea() {
 		$id = &JRequest::getVar('id');
 		
@@ -458,7 +444,7 @@ class ControllerIdea extends JController {
 		$id = JRequest::getVar('id');
 		$vote = JRequest::getVar('vote');
 		$user = &JFactory::getUser();
-		$user_id = $user->id;
+		$user_id = $user->get('id');
 		$model_cm = $this->getModel( 'comment' );
 		$model_cm->setIdeaId( $id );
 		$output = $model_cm->getOutput();

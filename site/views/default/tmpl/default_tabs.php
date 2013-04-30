@@ -36,18 +36,13 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 <div>
 <?php $activeTab = &JRequest::getVar('tab', 0); ?>
 <div id="new_tabs">
-    <span>
-        <?php echo ($activeTab != 0) ? '<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id).'">':'<span>'; ?>
-        <?php echo JText::_('STATUS_NO_STATUS'); ?>
-        <?php echo ($activeTab != 0) ? '</a>' : '</span>'; ?>
-    </span>
-    <?php    foreach ($this->tabs as $tab) : ?>
+    <?php foreach ($this->tabs as $tab) : ?>
     <span>
         <?php echo ($activeTab != $tab->id) ? '<a href="'.JRoute::_('index.php?option=com_intosuggest&forumId='.$this->output->forum->id.'&tab='.$tab->id).'">':'<span>'; ?>
-        <?php echo JText::_($tab->title); ?>
+        <?php echo sprintf('%s (%d)', JText::_($tab->title), $tab->ideacount); ?>
         <?php echo ($activeTab != $tab->id) ? '</a>' : '</span>'; ?>
     </span>
-    <?php    endforeach; ?>
+    <?php endforeach; ?>
 </div>
 <div class="clear_both"></div>
 <div id="idea_container">
