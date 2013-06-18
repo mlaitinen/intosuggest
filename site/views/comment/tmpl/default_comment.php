@@ -177,7 +177,7 @@ if (count($this->comments)){
 ?>
 <div class="<?php echo $class; ?>" id="comment_<?php echo $comment->id;?>">
 	<div class="username">
-		<div class="_image"><?php echo $avatar_img;?></div>
+		<div class="_image"><?php //echo $avatar_img;?></div>
 		<div class="_name" style="text-align:center;"><?php echo $user->name; ?></div>
 	</div>
 	<div class="comment" id="comment_content_<?php echo $comment->id?>">
